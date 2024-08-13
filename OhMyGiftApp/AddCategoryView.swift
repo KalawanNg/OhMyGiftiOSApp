@@ -17,7 +17,7 @@ struct AddCategoryView: View {
                 Text("Create category")
                     .font(.largeTitle)
                     .bold()
-                    .padding(.top, 20)
+                    .padding()
 
                 TextField("e.g. clothes", text: $categoryName)
                     .font(.title2)

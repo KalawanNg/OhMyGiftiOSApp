@@ -15,6 +15,15 @@
 		B913C0A82C494AA4000D0492 /* WishListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A72C494AA4000D0492 /* WishListCardView.swift */; };
 		B913C0AA2C494AB6000D0492 /* AddWishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A92C494AB6000D0492 /* AddWishView.swift */; };
 		B913C0AC2C494ACF000D0492 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */; };
+		B934BD242C52F4FE004F3B07 /* CreateWishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */; };
+		B934BD262C6043F6004F3B07 /* WishListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD252C6043F6004F3B07 /* WishListDetailView.swift */; };
+		B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD272C6427C2004F3B07 /* LogInView.swift */; };
+		B934BD2F2C668BFC004F3B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */; };
+		B934BD312C66E431004F3B07 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD302C66E431004F3B07 /* ImagePicker.swift */; };
+		B934BD342C696064004F3B07 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD332C696064004F3B07 /* FirebaseAuth */; };
+		B934BD362C696064004F3B07 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD352C696064004F3B07 /* FirebaseFirestore */; };
+		B934BD382C696064004F3B07 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD372C696064004F3B07 /* FirebaseStorage */; };
+		B934BD3A2C6A7307004F3B07 /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD392C6A7307004F3B07 /* MainMessagesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +36,12 @@
 		B913C0A72C494AA4000D0492 /* WishListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCardView.swift; sourceTree = "<group>"; };
 		B913C0A92C494AB6000D0492 /* AddWishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWishView.swift; sourceTree = "<group>"; };
 		B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWishlistView.swift; sourceTree = "<group>"; };
+		B934BD252C6043F6004F3B07 /* WishListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListDetailView.swift; sourceTree = "<group>"; };
+		B934BD272C6427C2004F3B07 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B934BD302C66E431004F3B07 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B934BD392C6A7307004F3B07 /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +49,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B934BD342C696064004F3B07 /* FirebaseAuth in Frameworks */,
+				B934BD362C696064004F3B07 /* FirebaseFirestore in Frameworks */,
+				B934BD382C696064004F3B07 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,11 +78,17 @@
 			isa = PBXGroup;
 			children = (
 				B913C0972C493CC1000D0492 /* OhMyGiftAppApp.swift */,
+				B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */,
 				B913C0992C493CC1000D0492 /* ContentView.swift */,
 				B913C0A52C4940BA000D0492 /* WishListsView.swift */,
 				B913C0A72C494AA4000D0492 /* WishListCardView.swift */,
 				B913C0A92C494AB6000D0492 /* AddWishView.swift */,
 				B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */,
+				B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */,
+				B934BD252C6043F6004F3B07 /* WishListDetailView.swift */,
+				B934BD272C6427C2004F3B07 /* LogInView.swift */,
+				B934BD392C6A7307004F3B07 /* MainMessagesView.swift */,
+				B934BD302C66E431004F3B07 /* ImagePicker.swift */,
 				B913C09B2C493CC4000D0492 /* Assets.xcassets */,
 				B913C09D2C493CC4000D0492 /* Preview Content */,
 			);
@@ -95,6 +119,11 @@
 			dependencies = (
 			);
 			name = OhMyGiftApp;
+			packageProductDependencies = (
+				B934BD332C696064004F3B07 /* FirebaseAuth */,
+				B934BD352C696064004F3B07 /* FirebaseFirestore */,
+				B934BD372C696064004F3B07 /* FirebaseStorage */,
+			);
 			productName = OhMyGiftApp;
 			productReference = B913C0942C493CC1000D0492 /* OhMyGiftApp.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +152,9 @@
 				Base,
 			);
 			mainGroup = B913C08B2C493CC1000D0492;
+			packageReferences = (
+				B934BD322C696064004F3B07 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = B913C0952C493CC1000D0492 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +171,7 @@
 			files = (
 				B913C09F2C493CC4000D0492 /* Preview Assets.xcassets in Resources */,
 				B913C09C2C493CC4000D0492 /* Assets.xcassets in Resources */,
+				B934BD2F2C668BFC004F3B07 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,10 +182,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B934BD262C6043F6004F3B07 /* WishListDetailView.swift in Sources */,
 				B913C0AC2C494ACF000D0492 /* AddCategoryView.swift in Sources */,
 				B913C09A2C493CC1000D0492 /* ContentView.swift in Sources */,
 				B913C0A82C494AA4000D0492 /* WishListCardView.swift in Sources */,
+				B934BD242C52F4FE004F3B07 /* CreateWishlistView.swift in Sources */,
 				B913C0AA2C494AB6000D0492 /* AddWishView.swift in Sources */,
+				B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */,
+				B934BD3A2C6A7307004F3B07 /* MainMessagesView.swift in Sources */,
+				B934BD312C66E431004F3B07 /* ImagePicker.swift in Sources */,
 				B913C0982C493CC1000D0492 /* OhMyGiftAppApp.swift in Sources */,
 				B913C0A62C4940BA000D0492 /* WishListsView.swift in Sources */,
 			);
@@ -360,6 +398,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B934BD322C696064004F3B07 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B934BD332C696064004F3B07 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B934BD322C696064004F3B07 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B934BD352C696064004F3B07 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B934BD322C696064004F3B07 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		B934BD372C696064004F3B07 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B934BD322C696064004F3B07 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B913C08C2C493CC1000D0492 /* Project object */;
 }

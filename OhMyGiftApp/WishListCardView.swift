@@ -30,7 +30,9 @@ struct WishListCardView: View {
                 .padding()
         }
         .padding()
-        .background(Color.white)
+        .foregroundColor(Color(red: 12/255, green: 45/255, blue: 87/255))
+        //.background(Color(red: 255/255, green: 239/255, blue: 239/255))
+        .background(Color(red: 2485/255, green: 227/255, blue: 225/255))
         .cornerRadius(10)
         .shadow(radius: 5)
     }

@@ -1,10 +1,3 @@
-//
-//  AddWishView.swift
-//  OhMyGiftApp
-//
-//  Created by 吴金泳 on 18/07/2024.
-//
-
 import SwiftUI
 
 struct AddWishView: View {
@@ -14,36 +7,44 @@ struct AddWishView: View {
     @State private var quantity = 1
     @State private var note = ""
     @State private var isMustHave = false
-    @Environment(\.presentationMode) var presentationMode //什么意思
+    @State private var selectedWishlistID: UUID?
+
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var wishlists: [WishlistItem]
     
+    var onSave: (UUID, Wish) -> Void
+
     var body: some View {
-        NavigationView{
-            Form{
-                Section(header: Text("Item Information")){
-                    TextField("e.g beer dispenser", text: $itemName)//如何理解？
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                Section(header: Text("Item Information")) {
+                    TextField("e.g beer dispenser", text: $itemName)
+                        .font(.title)
                         .padding()
                     
-                    HStack{
-                        Image(systemName: "gift.fill")
-                        Text("Pencil")
-                        Spacer()
-                        
-                        Image(systemName: "chevron.down")
+                    Picker("Select Wishlist", selection: $selectedWishlistID) {
+                        ForEach(wishlists) { wishlist in
+                            Text(wishlist.title).tag(wishlist.id as UUID?)
+                        }
                     }
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                    
-                    HStack{
+                    .pickerStyle(MenuPickerStyle())
+                    .onAppear {
+                        if selectedWishlistID == nil, let firstWishlist = wishlists.first {
+                            selectedWishlistID = firstWishlist.id
+                        }
+                    }
+
+                    HStack {
                         Image(systemName: "photo")
                         Text("Image")
                         Spacer()
-                        Button(action: {}){
+                        Button(action: {}) {
                             Image(systemName: "plus.circle")
                         }
                     }
                     .padding()
-                    HStack{
+
+                    HStack {
                         Image(systemName: "tag")
                         Text("Price")
                         Spacer()
@@ -51,7 +52,8 @@ struct AddWishView: View {
                             .keyboardType(.decimalPad)
                     }
                     .padding()
-                    HStack{
+                    
+                    HStack {
                         Image(systemName: "link")
                         Text("Link")
                         Spacer()
@@ -59,12 +61,13 @@ struct AddWishView: View {
                             .keyboardType(.URL)
                     }
                     .padding()
-                    HStack{
+                    
+                    HStack {
                         Image(systemName: "number")
                         Text("Quantity")
                         Spacer()
                         Button(action: {
-                            if quantity > 1 { quantity -= 1}
+                            if quantity > 1 { quantity -= 1 }
                         }) {
                             Image(systemName: "minus.circle")
                         }
@@ -76,15 +79,17 @@ struct AddWishView: View {
                         }
                     }
                     .padding()
-                    HStack{
+                    
+                    HStack {
                         Image(systemName: "pencil")
                         Text("Note")
                         Spacer()
                         TextField("Add note", text: $note)
                     }
                     .padding()
-                    Toggle(isOn: $isMustHave){
-                        VStack(alignment: .leading){
+                    
+                    Toggle(isOn: $isMustHave) {
+                        VStack(alignment: .leading) {
                             Text("Must-have")
                             Text("The \"must-have\" wishes are the wishes you absolutely want to have. They are marked with a star in the Wishlist.")
                                 .font(.caption)
@@ -92,8 +97,15 @@ struct AddWishView: View {
                     }
                     .padding()
                 }
-                Button(action: {print ("Wish added")}) {
-                    Text("Make a wish") //print是什么意思
+
+                Button(action: {
+                    if let selectedWishlistID = selectedWishlistID {
+                        let newWish = Wish(name: itemName, price: price, link: link, quantity: quantity, note: note, isMustHave: isMustHave)
+                        onSave(selectedWishlistID, newWish)
+                    }
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Make a wish")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding()
@@ -104,13 +116,15 @@ struct AddWishView: View {
                 .padding()
             }
             .navigationBarTitle("Add Wish", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Cancel") {presentationMode.wrappedValue.dismiss()})//如何理解
+            .navigationBarItems(trailing: Button("Cancel") {
+                presentationMode.wrappedValue.dismiss()
+            })
         }
     }
 }
 
 struct AddWishView_Previews: PreviewProvider {
     static var previews: some View {
-        AddWishView()
+        AddWishView(wishlists: .constant([WishlistItem(title: "Sample", subtitle: "1 List", icon: "gift.fill")]), onSave: { _, _ in })
     }
 }
