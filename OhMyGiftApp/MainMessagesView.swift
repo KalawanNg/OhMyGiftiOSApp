@@ -7,9 +7,59 @@
 
 import SwiftUI
 
+class MainMessagesViewModel: ObservableObject {
+    
+    @Published var errorMessage = ""
+    
+    init() {
+        fetchCurrentUser()
+    }
+    
+    private func fetchCurrentUser() {
+        
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+            self.errorMessage = "Could not find firebase uid"
+            return
+        }
+        
+        //self.errorMessage = "\(uid)"
+        FirebaseManager.shared.firestore.collection("users").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                self.errorMessage = "Failed to fetch current user: \(error)"
+                print("Failed to fetch current user:", error)
+                return
+            }
+            
+            guard let data = snapshot?.data() else { return }
+           // print(data)
+            
+            self.errorMessage = "Data: \(data.description)"
+        }
+    }
+}
+
 struct MainMessagesView: View {
     
     @State var shouldShowLogOutOptions = false
+    
+    @ObservedObject private var vm = MainMessagesViewModel()
+    
+    var body: some View {
+        NavigationView {
+            
+            VStack {
+                Text("Current User ID: \(vm.errorMessage)")
+                
+                customNavBar
+                messagesView
+            }
+            .overlay(
+               newMessageButton, alignment: .bottom
+               
+            )
+            .navigationBarBackButtonHidden(true)
+        }
+    }
     
     private var customNavBar: some View {
         HStack(spacing: 16) {
@@ -48,21 +98,6 @@ struct MainMessagesView: View {
             //.default(Text("Defult Button")),
                 .cancel()
             ])
-        }
-    }
-    
-    var body: some View {
-        NavigationView {
-            
-            VStack {
-                customNavBar
-                messagesView
-            }
-            .overlay(
-               newMessageButton, alignment: .bottom
-               
-            )
-            .navigationBarBackButtonHidden(true)
         }
     }
     
