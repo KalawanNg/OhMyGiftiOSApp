@@ -143,7 +143,7 @@ struct WishListsView: View {
                             }
                         }.frame(maxWidth: .infinity)
 
-                        NavigationLink(destination: Text("Settings")) {
+                        NavigationLink(destination: LogInView()) {
                             VStack {
                                 Image(systemName: "gearshape.fill")
                                 Text("Settings")
