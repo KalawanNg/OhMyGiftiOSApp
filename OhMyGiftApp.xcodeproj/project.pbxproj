@@ -28,6 +28,7 @@
 		B934BD402C6C3883004F3B07 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD3F2C6C3883004F3B07 /* SDWebImageSwiftUI */; };
 		B934BD432C719843004F3B07 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD422C719843004F3B07 /* ChatUser.swift */; };
 		B934BD452C719DCA004F3B07 /* CreateNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD442C719DCA004F3B07 /* CreateNewMessageView.swift */; };
+		B934BD472C742602004F3B07 /* ChatLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD462C742602004F3B07 /* ChatLogView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		B934BD3C2C6BB192004F3B07 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B934BD422C719843004F3B07 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		B934BD442C719DCA004F3B07 /* CreateNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageView.swift; sourceTree = "<group>"; };
+		B934BD462C742602004F3B07 /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */,
 				B934BD252C6043F6004F3B07 /* WishListDetailView.swift */,
 				B934BD272C6427C2004F3B07 /* LogInView.swift */,
+				B934BD462C742602004F3B07 /* ChatLogView.swift */,
 				B934BD392C6A7307004F3B07 /* MainMessagesView.swift */,
 				B934BD442C719DCA004F3B07 /* CreateNewMessageView.swift */,
 				B934BD302C66E431004F3B07 /* ImagePicker.swift */,
@@ -222,6 +225,7 @@
 				B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */,
 				B934BD432C719843004F3B07 /* ChatUser.swift in Sources */,
 				B934BD3A2C6A7307004F3B07 /* MainMessagesView.swift in Sources */,
+				B934BD472C742602004F3B07 /* ChatLogView.swift in Sources */,
 				B934BD312C66E431004F3B07 /* ImagePicker.swift in Sources */,
 				B913C0982C493CC1000D0492 /* OhMyGiftAppApp.swift in Sources */,
 				B913C0A62C4940BA000D0492 /* WishListsView.swift in Sources */,
