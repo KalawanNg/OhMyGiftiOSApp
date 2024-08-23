@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestore
 
 struct ChatUser: Identifiable {
     
@@ -19,3 +21,9 @@ struct ChatUser: Identifiable {
         self.profileImageUrl = data["profileImageUrl"] as? String ?? ""
     }
 }
+
+//struct ChatUser: Codable, Identifiable {
+//    @DocumentID var id: String?
+//    let uid, email, profileImageUrl: String
+//}
+

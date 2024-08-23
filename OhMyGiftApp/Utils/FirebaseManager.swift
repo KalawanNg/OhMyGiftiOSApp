@@ -16,6 +16,8 @@ class FirebaseManager: NSObject { //singelton to 减低登陆界面的crash风�
     let storage : Storage
     let firestore : Firestore
     
+    var currentUser: ChatUser?
+    
     static let shared = FirebaseManager()
     
     override init() {
