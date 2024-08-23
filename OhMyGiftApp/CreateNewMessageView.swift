@@ -89,6 +89,6 @@ struct CreateNewMessageView: View {
 }
 
 #Preview {
-   // CreateNewMessageView()
+    //CreateNewMessageView()
     MainMessagesView()
 }

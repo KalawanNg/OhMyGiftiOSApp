@@ -52,21 +52,17 @@ class ChatLogViewModel: ObservableObject {
         fetchMessages()
     }
     
-    var firestoreListener: ListenerRegistration?
-    
     func fetchMessages() {
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid
         else { return }
         
         guard let toId = chatUser?.uid else { return }
-        firestoreListener?.remove()
-        chatMessages.removeAll()
         
         FirebaseManager.shared.firestore
             .collection(FirebaseConstants.messages)
             .document(fromId)
             .collection(toId)
-            .order(by: FirebaseConstants.timestamp)
+            .order(by: "timestamp")
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     self.errorMessage = "Failed to listen for messages: \(error)"
@@ -96,7 +92,7 @@ class ChatLogViewModel: ObservableObject {
         guard let toId = chatUser?.uid else { return }
         
         let document = FirebaseManager.shared.firestore
-            .collection(FirebaseConstants.messages)
+            .collection("messages")
             .document(fromId)
             .collection(toId)
             .document()
@@ -301,9 +297,10 @@ private struct DescriptionPlaceholder: View {
 
 struct ChatLogView_Previews: PreviewProvider {
     static var previews: some View {
-        //        NavigationView {
+//                NavigationView {
 //                   ChatLogView(chatUser: .init(data: ["uid": "36TLospFonXMJcYKrU7r4YPx1OO2", "email": "appuser3@gmail.com"]))
 //               }
         MainMessagesView()
     }
 }
+
