@@ -11,6 +11,7 @@ struct AddWishView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @Binding var wishlists: [WishlistItem]
+    //@Binding var wishlist: WishlistItem
     
     var onSave: (UUID, Wish) -> Void
 
@@ -101,6 +102,7 @@ struct AddWishView: View {
                 Button(action: {
                     if let selectedWishlistID = selectedWishlistID {
                         let newWish = Wish(name: itemName, price: price, link: link, quantity: quantity, note: note, isMustHave: isMustHave)
+                        print("Saving new wish: \(newWish)")
                         onSave(selectedWishlistID, newWish)
                     }
                     presentationMode.wrappedValue.dismiss()

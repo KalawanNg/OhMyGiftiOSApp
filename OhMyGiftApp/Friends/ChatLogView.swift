@@ -298,9 +298,9 @@ private struct DescriptionPlaceholder: View {
 struct ChatLogView_Previews: PreviewProvider {
     static var previews: some View {
 //                NavigationView {
-//                   ChatLogView(chatUser: .init(data: ["uid": "36TLospFonXMJcYKrU7r4YPx1OO2", "email": "appuser3@gmail.com"]))
+                   ChatLogView(chatUser: .init(data: ["uid": "36TLospFonXMJcYKrU7r4YPx1OO2", "email": "appuser3@gmail.com"]))
 //               }
-        MainMessagesView()
+        //MainMessagesView()
     }
 }
 

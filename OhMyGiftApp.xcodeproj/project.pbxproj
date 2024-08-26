@@ -29,6 +29,9 @@
 		B934BD4A2C77E718004F3B07 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD492C77E718004F3B07 /* FirebaseAuth */; };
 		B934BD4C2C77E718004F3B07 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD4B2C77E718004F3B07 /* FirebaseFirestore */; };
 		B934BD4E2C77E718004F3B07 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD4D2C77E718004F3B07 /* FirebaseStorage */; };
+		B9FE16892C796A8000C72A20 /* MainWishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16882C796A8000C72A20 /* MainWishListView.swift */; };
+		B9FE168B2C7B889C00C72A20 /* WishListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168A2C7B889C00C72A20 /* WishListModel.swift */; };
+		B9FE168D2C7BC13C00C72A20 /* WishlistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168C2C7BC13C00C72A20 /* WishlistRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		B934BD422C719843004F3B07 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		B934BD442C719DCA004F3B07 /* CreateNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageView.swift; sourceTree = "<group>"; };
 		B934BD462C742602004F3B07 /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
+		B9FE16882C796A8000C72A20 /* MainWishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWishListView.swift; sourceTree = "<group>"; };
+		B9FE168A2C7B889C00C72A20 /* WishListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListModel.swift; sourceTree = "<group>"; };
+		B9FE168C2C7BC13C00C72A20 /* WishlistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,22 +93,14 @@
 		B913C0962C493CC1000D0492 /* OhMyGiftApp */ = {
 			isa = PBXGroup;
 			children = (
+				B9FE16822C79361F00C72A20 /* Friends */,
 				B934BD412C71982B004F3B07 /* Model */,
 				B934BD3B2C6BB16D004F3B07 /* Utils */,
 				B913C0972C493CC1000D0492 /* OhMyGiftAppApp.swift */,
 				B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */,
 				B913C0992C493CC1000D0492 /* ContentView.swift */,
-				B913C0A52C4940BA000D0492 /* WishListsView.swift */,
-				B913C0A72C494AA4000D0492 /* WishListCardView.swift */,
-				B913C0A92C494AB6000D0492 /* AddWishView.swift */,
-				B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */,
-				B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */,
-				B934BD252C6043F6004F3B07 /* WishListDetailView.swift */,
+				B9FE16832C79367200C72A20 /* WishLists */,
 				B934BD272C6427C2004F3B07 /* LogInView.swift */,
-				B934BD462C742602004F3B07 /* ChatLogView.swift */,
-				B934BD392C6A7307004F3B07 /* MainMessagesView.swift */,
-				B934BD442C719DCA004F3B07 /* CreateNewMessageView.swift */,
-				B934BD302C66E431004F3B07 /* ImagePicker.swift */,
 				B913C09B2C493CC4000D0492 /* Assets.xcassets */,
 				B913C09D2C493CC4000D0492 /* Preview Content */,
 			);
@@ -120,6 +118,8 @@
 		B934BD3B2C6BB16D004F3B07 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B934BD302C66E431004F3B07 /* ImagePicker.swift */,
+				B9FE168C2C7BC13C00C72A20 /* WishlistRepository.swift */,
 				B934BD3C2C6BB192004F3B07 /* FirebaseManager.swift */,
 			);
 			path = Utils;
@@ -131,6 +131,31 @@
 				B934BD422C719843004F3B07 /* ChatUser.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B9FE16822C79361F00C72A20 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				B934BD442C719DCA004F3B07 /* CreateNewMessageView.swift */,
+				B934BD462C742602004F3B07 /* ChatLogView.swift */,
+				B934BD392C6A7307004F3B07 /* MainMessagesView.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		B9FE16832C79367200C72A20 /* WishLists */ = {
+			isa = PBXGroup;
+			children = (
+				B913C0A52C4940BA000D0492 /* WishListsView.swift */,
+				B9FE16882C796A8000C72A20 /* MainWishListView.swift */,
+				B9FE168A2C7B889C00C72A20 /* WishListModel.swift */,
+				B913C0A72C494AA4000D0492 /* WishListCardView.swift */,
+				B934BD252C6043F6004F3B07 /* WishListDetailView.swift */,
+				B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */,
+				B913C0A92C494AB6000D0492 /* AddWishView.swift */,
+				B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */,
+			);
+			path = WishLists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,12 +247,15 @@
 				B934BD242C52F4FE004F3B07 /* CreateWishlistView.swift in Sources */,
 				B913C0AA2C494AB6000D0492 /* AddWishView.swift in Sources */,
 				B934BD452C719DCA004F3B07 /* CreateNewMessageView.swift in Sources */,
+				B9FE16892C796A8000C72A20 /* MainWishListView.swift in Sources */,
 				B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */,
 				B934BD432C719843004F3B07 /* ChatUser.swift in Sources */,
 				B934BD3A2C6A7307004F3B07 /* MainMessagesView.swift in Sources */,
 				B934BD472C742602004F3B07 /* ChatLogView.swift in Sources */,
 				B934BD312C66E431004F3B07 /* ImagePicker.swift in Sources */,
+				B9FE168D2C7BC13C00C72A20 /* WishlistRepository.swift in Sources */,
 				B913C0982C493CC1000D0492 /* OhMyGiftAppApp.swift in Sources */,
+				B9FE168B2C7B889C00C72A20 /* WishListModel.swift in Sources */,
 				B913C0A62C4940BA000D0492 /* WishListsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
