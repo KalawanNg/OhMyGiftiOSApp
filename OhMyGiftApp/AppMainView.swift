@@ -80,7 +80,7 @@ struct AppMainView: View {
                             }
                         }.frame(maxWidth: .infinity)
 
-                        NavigationLink(destination: Text("Inbox")) {
+                        NavigationLink(destination: ProfileView()) {
                             VStack {
                                 Image(systemName: "bell.fill")
                                 Text("Inbox")

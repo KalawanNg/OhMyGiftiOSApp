@@ -70,20 +70,38 @@ class ChatUserRepository: ObservableObject {
     }
 
     // 获取用户个人资料
-    func fetchProfile(userId: String, completion: @escaping (_ chatUser: ChatUser?, _ error: Error?) -> Void) {
-        db.collection("users").document(userId).getDocument { snapshot, error in
-            if let error = error {
-                completion(nil, error)
-                return
+//    func fetchProfile(userId: String, completion: @escaping (_ chatUser: ChatUser?, _ error: Error?) -> Void) {
+//        db.collection("users").document(userId).getDocument { snapshot, error in
+//            if let error = error {
+//                completion(nil, error)
+//                return
+//            }
+//            
+//            guard let data = snapshot?.data() else {
+//                completion(nil, NSError(domain: "com.yourdomain.app", code: -1, userInfo: [NSLocalizedDescriptionKey: "Profile not found"]))
+//                return
+//            }
+//            
+//            let chatUser = ChatUser(data: data)
+//            completion(chatUser, nil)
+//        }
+//    }
+    func fetchProfile(userId: String, completion: @escaping (_ profile: ChatUser?, _ error: Error?) -> Void) {
+            db.collection("users").document(userId).getDocument { document, error in
+                if let error = error {
+                    print("Error fetching profile: \(error)")
+                    completion(nil, error)
+                    return
+                }
+                
+                guard let data = document?.data() else {
+                    print("No data found for userId: \(userId)")
+                    completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Profile not found"]))
+                    return
+                }
+                
+                let profile = ChatUser(data: data)
+                completion(profile, nil)
             }
-            
-            guard let data = snapshot?.data() else {
-                completion(nil, NSError(domain: "com.yourdomain.app", code: -1, userInfo: [NSLocalizedDescriptionKey: "Profile not found"]))
-                return
-            }
-            
-            let chatUser = ChatUser(data: data)
-            completion(chatUser, nil)
         }
-    }
 }

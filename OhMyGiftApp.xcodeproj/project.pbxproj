@@ -30,6 +30,7 @@
 		B97BC9212C81432000E7CF8A /* WishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97BC9202C81432000E7CF8A /* WishViewModel.swift */; };
 		B97BC9252C8149CA00E7CF8A /* WishCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97BC9242C8149CA00E7CF8A /* WishCardView.swift */; };
 		B97BC9272C814A3A00E7CF8A /* WishDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97BC9262C814A3A00E7CF8A /* WishDetailView.swift */; };
+		B9A4D4852C827ED200A75A65 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A4D4842C827ED200A75A65 /* ProfileView.swift */; };
 		B9FE16892C796A8000C72A20 /* WishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16882C796A8000C72A20 /* WishListView.swift */; };
 		B9FE168B2C7B889C00C72A20 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168A2C7B889C00C72A20 /* WishListViewModel.swift */; };
 		B9FE168D2C7BC13C00C72A20 /* WishListsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168C2C7BC13C00C72A20 /* WishListsRepository.swift */; };
@@ -63,6 +64,7 @@
 		B97BC9202C81432000E7CF8A /* WishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishViewModel.swift; sourceTree = "<group>"; };
 		B97BC9242C8149CA00E7CF8A /* WishCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishCardView.swift; sourceTree = "<group>"; };
 		B97BC9262C814A3A00E7CF8A /* WishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishDetailView.swift; sourceTree = "<group>"; };
+		B9A4D4842C827ED200A75A65 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B9FE16882C796A8000C72A20 /* WishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListView.swift; sourceTree = "<group>"; };
 		B9FE168A2C7B889C00C72A20 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
 		B9FE168C2C7BC13C00C72A20 /* WishListsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListsRepository.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		B913C0962C493CC1000D0492 /* OhMyGiftApp */ = {
 			isa = PBXGroup;
 			children = (
+				B9A4D4812C827E6400A75A65 /* UserProfile */,
 				B934BD412C71982B004F3B07 /* Model */,
 				B934BD3B2C6BB16D004F3B07 /* Utils */,
 				B9FE16832C79367200C72A20 /* WishLists */,
@@ -168,6 +171,14 @@
 				B97BC9262C814A3A00E7CF8A /* WishDetailView.swift */,
 			);
 			path = Wishes;
+			sourceTree = "<group>";
+		};
+		B9A4D4812C827E6400A75A65 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				B9A4D4842C827ED200A75A65 /* ProfileView.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		B9FE16822C79361F00C72A20 /* Friends */ = {
@@ -282,6 +293,7 @@
 				B97BC9272C814A3A00E7CF8A /* WishDetailView.swift in Sources */,
 				B913C0AA2C494AB6000D0492 /* WishView.swift in Sources */,
 				B934BD452C719DCA004F3B07 /* CreateNewMessageView.swift in Sources */,
+				B9A4D4852C827ED200A75A65 /* ProfileView.swift in Sources */,
 				B9FE16892C796A8000C72A20 /* WishListView.swift in Sources */,
 				B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */,
 				B934BD432C719843004F3B07 /* ChatUser.swift in Sources */,
