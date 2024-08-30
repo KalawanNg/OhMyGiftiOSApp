@@ -9,6 +9,11 @@ import SwiftUI
 
 @main
 struct OhMyGiftAppApp: App {
+    
+    init() {
+            _ = FirebaseManager.shared // 强制实例化 FirebaseManager 以确保 Firebase 初始化
+        }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

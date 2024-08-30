@@ -11,11 +11,9 @@
 		B913C09A2C493CC1000D0492 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0992C493CC1000D0492 /* ContentView.swift */; };
 		B913C09C2C493CC4000D0492 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B913C09B2C493CC4000D0492 /* Assets.xcassets */; };
 		B913C09F2C493CC4000D0492 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B913C09E2C493CC4000D0492 /* Preview Assets.xcassets */; };
-		B913C0A62C4940BA000D0492 /* WishListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A52C4940BA000D0492 /* WishListsView.swift */; };
+		B913C0A62C4940BA000D0492 /* AppMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A52C4940BA000D0492 /* AppMainView.swift */; };
 		B913C0A82C494AA4000D0492 /* WishListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A72C494AA4000D0492 /* WishListCardView.swift */; };
-		B913C0AA2C494AB6000D0492 /* AddWishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A92C494AB6000D0492 /* AddWishView.swift */; };
-		B913C0AC2C494ACF000D0492 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */; };
-		B934BD242C52F4FE004F3B07 /* CreateWishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */; };
+		B913C0AA2C494AB6000D0492 /* WishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A92C494AB6000D0492 /* WishView.swift */; };
 		B934BD262C6043F6004F3B07 /* WishListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD252C6043F6004F3B07 /* WishListDetailView.swift */; };
 		B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD272C6427C2004F3B07 /* LogInView.swift */; };
 		B934BD2F2C668BFC004F3B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */; };
@@ -29,9 +27,19 @@
 		B934BD4A2C77E718004F3B07 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD492C77E718004F3B07 /* FirebaseAuth */; };
 		B934BD4C2C77E718004F3B07 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD4B2C77E718004F3B07 /* FirebaseFirestore */; };
 		B934BD4E2C77E718004F3B07 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B934BD4D2C77E718004F3B07 /* FirebaseStorage */; };
-		B9FE16892C796A8000C72A20 /* MainWishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16882C796A8000C72A20 /* MainWishListView.swift */; };
-		B9FE168B2C7B889C00C72A20 /* WishListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168A2C7B889C00C72A20 /* WishListModel.swift */; };
-		B9FE168D2C7BC13C00C72A20 /* WishlistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168C2C7BC13C00C72A20 /* WishlistRepository.swift */; };
+		B97BC9212C81432000E7CF8A /* WishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97BC9202C81432000E7CF8A /* WishViewModel.swift */; };
+		B97BC9252C8149CA00E7CF8A /* WishCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97BC9242C8149CA00E7CF8A /* WishCardView.swift */; };
+		B97BC9272C814A3A00E7CF8A /* WishDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97BC9262C814A3A00E7CF8A /* WishDetailView.swift */; };
+		B9FE16892C796A8000C72A20 /* WishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16882C796A8000C72A20 /* WishListView.swift */; };
+		B9FE168B2C7B889C00C72A20 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168A2C7B889C00C72A20 /* WishListViewModel.swift */; };
+		B9FE168D2C7BC13C00C72A20 /* WishListsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168C2C7BC13C00C72A20 /* WishListsRepository.swift */; };
+		B9FE168F2C7D524E00C72A20 /* ChatUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE168E2C7D524E00C72A20 /* ChatUserRepository.swift */; };
+		B9FE16912C7E2CCA00C72A20 /* WishListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16902C7E2CCA00C72A20 /* WishListModel.swift */; };
+		B9FE16932C7E2D4800C72A20 /* WishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16922C7E2D4800C72A20 /* WishModel.swift */; };
+		B9FE16992C7FD8C000C72A20 /* ImagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16982C7FD8C000C72A20 /* ImagesRepository.swift */; };
+		B9FE169B2C7FD90C00C72A20 /* LoadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE169A2C7FD90C00C72A20 /* LoadImageView.swift */; };
+		B9FE169F2C7FDC2C00C72A20 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE169E2C7FDC2C00C72A20 /* ButtonView.swift */; };
+		B9FE16A12C7FDCA200C72A20 /* WishListsDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FE16A02C7FDCA200C72A20 /* WishListsDummyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,11 +48,9 @@
 		B913C0992C493CC1000D0492 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B913C09B2C493CC4000D0492 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B913C09E2C493CC4000D0492 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B913C0A52C4940BA000D0492 /* WishListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListsView.swift; sourceTree = "<group>"; };
+		B913C0A52C4940BA000D0492 /* AppMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainView.swift; sourceTree = "<group>"; };
 		B913C0A72C494AA4000D0492 /* WishListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCardView.swift; sourceTree = "<group>"; };
-		B913C0A92C494AB6000D0492 /* AddWishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWishView.swift; sourceTree = "<group>"; };
-		B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
-		B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWishlistView.swift; sourceTree = "<group>"; };
+		B913C0A92C494AB6000D0492 /* WishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishView.swift; sourceTree = "<group>"; };
 		B934BD252C6043F6004F3B07 /* WishListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListDetailView.swift; sourceTree = "<group>"; };
 		B934BD272C6427C2004F3B07 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -54,9 +60,19 @@
 		B934BD422C719843004F3B07 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		B934BD442C719DCA004F3B07 /* CreateNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageView.swift; sourceTree = "<group>"; };
 		B934BD462C742602004F3B07 /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
-		B9FE16882C796A8000C72A20 /* MainWishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWishListView.swift; sourceTree = "<group>"; };
-		B9FE168A2C7B889C00C72A20 /* WishListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListModel.swift; sourceTree = "<group>"; };
-		B9FE168C2C7BC13C00C72A20 /* WishlistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistRepository.swift; sourceTree = "<group>"; };
+		B97BC9202C81432000E7CF8A /* WishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishViewModel.swift; sourceTree = "<group>"; };
+		B97BC9242C8149CA00E7CF8A /* WishCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishCardView.swift; sourceTree = "<group>"; };
+		B97BC9262C814A3A00E7CF8A /* WishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishDetailView.swift; sourceTree = "<group>"; };
+		B9FE16882C796A8000C72A20 /* WishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListView.swift; sourceTree = "<group>"; };
+		B9FE168A2C7B889C00C72A20 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
+		B9FE168C2C7BC13C00C72A20 /* WishListsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListsRepository.swift; sourceTree = "<group>"; };
+		B9FE168E2C7D524E00C72A20 /* ChatUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserRepository.swift; sourceTree = "<group>"; };
+		B9FE16902C7E2CCA00C72A20 /* WishListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListModel.swift; sourceTree = "<group>"; };
+		B9FE16922C7E2D4800C72A20 /* WishModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishModel.swift; sourceTree = "<group>"; };
+		B9FE16982C7FD8C000C72A20 /* ImagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesRepository.swift; sourceTree = "<group>"; };
+		B9FE169A2C7FD90C00C72A20 /* LoadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImageView.swift; sourceTree = "<group>"; };
+		B9FE169E2C7FDC2C00C72A20 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		B9FE16A02C7FDCA200C72A20 /* WishListsDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListsDummyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,13 +109,15 @@
 		B913C0962C493CC1000D0492 /* OhMyGiftApp */ = {
 			isa = PBXGroup;
 			children = (
-				B9FE16822C79361F00C72A20 /* Friends */,
 				B934BD412C71982B004F3B07 /* Model */,
 				B934BD3B2C6BB16D004F3B07 /* Utils */,
+				B9FE16832C79367200C72A20 /* WishLists */,
+				B97BC9232C81499700E7CF8A /* Wishes */,
+				B9FE16822C79361F00C72A20 /* Friends */,
 				B913C0972C493CC1000D0492 /* OhMyGiftAppApp.swift */,
 				B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */,
 				B913C0992C493CC1000D0492 /* ContentView.swift */,
-				B9FE16832C79367200C72A20 /* WishLists */,
+				B913C0A52C4940BA000D0492 /* AppMainView.swift */,
 				B934BD272C6427C2004F3B07 /* LogInView.swift */,
 				B913C09B2C493CC4000D0492 /* Assets.xcassets */,
 				B913C09D2C493CC4000D0492 /* Preview Content */,
@@ -119,8 +137,13 @@
 			isa = PBXGroup;
 			children = (
 				B934BD302C66E431004F3B07 /* ImagePicker.swift */,
-				B9FE168C2C7BC13C00C72A20 /* WishlistRepository.swift */,
+				B9FE16A02C7FDCA200C72A20 /* WishListsDummyData.swift */,
+				B9FE169E2C7FDC2C00C72A20 /* ButtonView.swift */,
+				B9FE169A2C7FD90C00C72A20 /* LoadImageView.swift */,
+				B9FE16982C7FD8C000C72A20 /* ImagesRepository.swift */,
+				B9FE168C2C7BC13C00C72A20 /* WishListsRepository.swift */,
 				B934BD3C2C6BB192004F3B07 /* FirebaseManager.swift */,
+				B9FE168E2C7D524E00C72A20 /* ChatUserRepository.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -129,8 +152,22 @@
 			isa = PBXGroup;
 			children = (
 				B934BD422C719843004F3B07 /* ChatUser.swift */,
+				B9FE16902C7E2CCA00C72A20 /* WishListModel.swift */,
+				B9FE168A2C7B889C00C72A20 /* WishListViewModel.swift */,
+				B9FE16922C7E2D4800C72A20 /* WishModel.swift */,
+				B97BC9202C81432000E7CF8A /* WishViewModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B97BC9232C81499700E7CF8A /* Wishes */ = {
+			isa = PBXGroup;
+			children = (
+				B913C0A92C494AB6000D0492 /* WishView.swift */,
+				B97BC9242C8149CA00E7CF8A /* WishCardView.swift */,
+				B97BC9262C814A3A00E7CF8A /* WishDetailView.swift */,
+			);
+			path = Wishes;
 			sourceTree = "<group>";
 		};
 		B9FE16822C79361F00C72A20 /* Friends */ = {
@@ -146,14 +183,9 @@
 		B9FE16832C79367200C72A20 /* WishLists */ = {
 			isa = PBXGroup;
 			children = (
-				B913C0A52C4940BA000D0492 /* WishListsView.swift */,
-				B9FE16882C796A8000C72A20 /* MainWishListView.swift */,
-				B9FE168A2C7B889C00C72A20 /* WishListModel.swift */,
+				B9FE16882C796A8000C72A20 /* WishListView.swift */,
 				B913C0A72C494AA4000D0492 /* WishListCardView.swift */,
 				B934BD252C6043F6004F3B07 /* WishListDetailView.swift */,
-				B934BD232C52F4FE004F3B07 /* CreateWishlistView.swift */,
-				B913C0A92C494AB6000D0492 /* AddWishView.swift */,
-				B913C0AB2C494ACF000D0492 /* AddCategoryView.swift */,
 			);
 			path = WishLists;
 			sourceTree = "<group>";
@@ -241,22 +273,30 @@
 			files = (
 				B934BD3D2C6BB192004F3B07 /* FirebaseManager.swift in Sources */,
 				B934BD262C6043F6004F3B07 /* WishListDetailView.swift in Sources */,
-				B913C0AC2C494ACF000D0492 /* AddCategoryView.swift in Sources */,
+				B9FE16912C7E2CCA00C72A20 /* WishListModel.swift in Sources */,
+				B97BC9252C8149CA00E7CF8A /* WishCardView.swift in Sources */,
 				B913C09A2C493CC1000D0492 /* ContentView.swift in Sources */,
+				B97BC9212C81432000E7CF8A /* WishViewModel.swift in Sources */,
 				B913C0A82C494AA4000D0492 /* WishListCardView.swift in Sources */,
-				B934BD242C52F4FE004F3B07 /* CreateWishlistView.swift in Sources */,
-				B913C0AA2C494AB6000D0492 /* AddWishView.swift in Sources */,
+				B9FE168F2C7D524E00C72A20 /* ChatUserRepository.swift in Sources */,
+				B97BC9272C814A3A00E7CF8A /* WishDetailView.swift in Sources */,
+				B913C0AA2C494AB6000D0492 /* WishView.swift in Sources */,
 				B934BD452C719DCA004F3B07 /* CreateNewMessageView.swift in Sources */,
-				B9FE16892C796A8000C72A20 /* MainWishListView.swift in Sources */,
+				B9FE16892C796A8000C72A20 /* WishListView.swift in Sources */,
 				B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */,
 				B934BD432C719843004F3B07 /* ChatUser.swift in Sources */,
 				B934BD3A2C6A7307004F3B07 /* MainMessagesView.swift in Sources */,
 				B934BD472C742602004F3B07 /* ChatLogView.swift in Sources */,
+				B9FE16932C7E2D4800C72A20 /* WishModel.swift in Sources */,
 				B934BD312C66E431004F3B07 /* ImagePicker.swift in Sources */,
-				B9FE168D2C7BC13C00C72A20 /* WishlistRepository.swift in Sources */,
+				B9FE168D2C7BC13C00C72A20 /* WishListsRepository.swift in Sources */,
 				B913C0982C493CC1000D0492 /* OhMyGiftAppApp.swift in Sources */,
-				B9FE168B2C7B889C00C72A20 /* WishListModel.swift in Sources */,
-				B913C0A62C4940BA000D0492 /* WishListsView.swift in Sources */,
+				B9FE168B2C7B889C00C72A20 /* WishListViewModel.swift in Sources */,
+				B9FE16A12C7FDCA200C72A20 /* WishListsDummyData.swift in Sources */,
+				B913C0A62C4940BA000D0492 /* AppMainView.swift in Sources */,
+				B9FE169F2C7FDC2C00C72A20 /* ButtonView.swift in Sources */,
+				B9FE169B2C7FD90C00C72A20 /* LoadImageView.swift in Sources */,
+				B9FE16992C7FD8C000C72A20 /* ImagesRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,9 @@ struct ChatUser: Identifiable {
     
     var id: String { uid }
     
-    let uid, email, profileImageUrl: String
+    let uid: String
+    let email: String
+    var profileImageUrl: String  // 将 let 改为 var
     
     init(data: [String: Any]) {
         self.uid = data["uid"] as? String ?? ""

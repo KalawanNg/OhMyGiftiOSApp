@@ -1,100 +1,122 @@
+
 import SwiftUI
 
-struct Wish: Identifiable {
-    var id = UUID()
+struct WishItem: Identifiable {
+    var id: String  // 使用字符串 id 而不是 UUID
     var name: String
-    var price: String
     var link: String
-    var quantity: Int
-    var note: String
-    var isMustHave: Bool
+    var icon: String
+    var price: String
 }
 
-struct WishlistDetailView: View {
-
+struct WishListDetailView: View {
+    @State private var wishItems: [WishItem] = []
+    @State private var showingWishView = false
+    @ObservedObject var viewModel: WishListViewModel
     @Binding var wishlists: [WishlistItem]
-    
-    @Binding var wishlist: WishlistItem
-    
-    @State private var shouldShowAddWishView = false  // 控制 AddWi
+    @ObservedObject private var wishlistsRepository = WishListsRepository()
     
     var body: some View {
-//            NavigationView { // 添加 NavigationView 包裹整个视图
-                VStack(alignment: .center, spacing: 20) {
-                    HStack {
-                        Image(systemName: wishlist.icon)
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .padding()
-                        
-                        VStack(alignment: .leading) {
-                            Text(wishlist.title)
-                                .font(.largeTitle)
-                                .bold()
+        VStack {
+            ScrollView {
+                LazyVStack(spacing: 20) {
+                    ForEach(wishItems) { item in  // 使用 wishItems 而不是 $wishItems
+                        NavigationLink(destination: WishDetailView(wish: WishModel(
+                            id: item.id,
+                            userId: FirebaseManager.shared.auth.currentUser?.uid ?? "",
+                            wishlistId: viewModel.wishlist?.wishlistId ?? "",
+                            wishName: item.name,
+                            wishImageName: item.icon,
+                            wishPrice: item.price,
+                            wishLink: item.link,
+                            wishQuantity: "1",
+                            wishDescription: "",
+                            dateCreated: Date()
+                        ), wishListId: viewModel.wishlist?.wishlistId ?? "")) {
+                            WishCardView(title: item.name, subtitle: item.price, icon: item.icon)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .shadow(radius: 5)
                         }
                     }
-                    
-                    List(wishlist.wishes) { wish in
-                                    VStack(alignment: .leading) {
-                                        Text(wish.name)
-                                            .font(.headline)
-                                        Text("Price: \(wish.price)")
-                                            .font(.subheadline)
-                                    }
-                                }
-                    
-                    Button {
-                                    shouldShowAddWishView.toggle()  // 切换显示 AddWishView
-                                } label: {
-                                    HStack {
-                                        Image(systemName: "plus")
-                                        Text("Add Wish")
-                                            .font(.headline)
-                                            .bold()
-                                    }
-                                    .padding()
-                                    .foregroundColor(.white)
-                                    .background(Color.blue)
-                                    .cornerRadius(10)
-                                }
-                                .padding(.top, 20)
-                                .sheet(isPresented: $shouldShowAddWishView) {  // 使用 sheet 显示 AddWishView
-                                    AddWishView(
-                                        wishlists: $wishlists,  // 传递 wishlists 的绑定
-                                        onSave: { id, wish in   // 定义保存 wish 的操作
-                                            if let index = wishlists.firstIndex(where: { $0.id == id }) {
-                                                wishlists[index].wishes.append(wish)
-                                                wishlist = wishlists[index]
-                                            }
-                                        }
-                                    )
-                                }
-                    
-                    Spacer() // 将内容推至顶部
+
+                    Button(action: {
+                        showingWishView = true
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(Color.white)
+                            .background(Color(red: 46/255, green: 35/255, blue: 108/255))
+                            .clipShape(Circle())
+                            .shadow(radius: 5)
+                    }
+                    .padding(.bottom, -10)
                 }
                 .padding()
+            }
+            .onAppear {
+                loadUserWishes()
+            }
             
+            .sheet(isPresented: $showingWishView) {
+                WishView(
+                        wishlists: $wishlists,
+                        viewModel: WishViewModel(wish: WishModel(
+                            id: UUID().uuidString,
+                            userId: FirebaseManager.shared.auth.currentUser?.uid ?? "",
+                            wishlistId: viewModel.wishlist?.wishlistId ?? "",
+                            wishName: "",
+                            wishImageName: "",
+                            wishPrice: "",
+                            wishLink: "",
+                            wishQuantity: "1",
+                            wishDescription: "",
+                            dateCreated: Date()
+                        ), wishListId: viewModel.wishlist?.wishlistId ?? "")
+                ) { selectedWishlistId, newWish in
+                    let wishItem = WishItem(
+                        id: UUID().uuidString,
+                        name: newWish.wishName,
+                        link: newWish.wishLink ?? "",
+                        icon:  "gift.fill",
+                        price: newWish.wishPrice ?? ""
+                    )
+                    wishItems.append(wishItem)
+                }
+            }
         }
     }
 
-    
-struct WishlistDetailView_Previews: PreviewProvider {
-        @State static var sampleWishlists = [
-            WishlistItem(
-                title: "General",
-                subtitle: "1 List",
-                icon: "gift.fill",
-                wishes: [
-                    Wish(name: "Sample Wish", price: "10.00", link: "", quantity: 1, note: "Sample note", isMustHave: true)
-                ]
-            )
-        ]
-        
-        @State static var selectedWishlist = sampleWishlists[0]  // 添加一个 State 变量表示当前选中的 wishlist
-        
-        static var previews: some View {
-            WishlistDetailView(wishlists: $sampleWishlists, wishlist: $selectedWishlist)
+    private func loadUserWishes() {
+        let userId = FirebaseManager.shared.auth.currentUser?.uid ?? ""
+        wishlistsRepository.fetchUserWishes(userId: userId) { wishes, error in
+            if let wishes = wishes {
+                wishItems = wishes.map { wish in
+                    WishItem(
+                        id: wish.id,  // 使用服务器返回的 id 而不是生成新的 UUID
+                        name: wish.wishName,
+                        link: wish.wishLink ?? "",
+                        icon: wish.wishImageName,
+                        price: wish.wishPrice ?? ""
+                    )
+                }
+            } else if let error = error {
+                print("Failed to load wishes: \(error.localizedDescription)")
+            }
         }
     }
+}
+
+#Preview {
+    WishListDetailView(viewModel: WishListViewModel(wishlist: WishListModel(
+        wishlistId: "sampleWishlistId",
+        userId: "sampleUserId",
+        wishlistName: "Sample Wishlist",
+        imageName: "sampleImageName",
+        wishlistDescription: "Sample description",
+        dateCreated: Date()
+    ), wishListId: "sampleWishlistId"), wishlists: .constant([]))
+}
