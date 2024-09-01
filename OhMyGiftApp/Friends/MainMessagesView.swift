@@ -68,25 +68,37 @@ class MainMessagesViewModel: ObservableObject {
     
     @Published var recentMessages = [RecentMessage]()
     
-    private var firestoreListener: ListenerRegistration?
+    //private var firestoreListener: ListenerRegistration?
     
      func fetchRecentMessages() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
-         firestoreListener?.remove()
+//         firestoreListener?.remove()
          self.recentMessages.removeAll()
          
-        FirebaseManager.shared.firestore
-             .collection(FirebaseConstants.recentMessages)
-             .document(uid)
-             .collection(FirebaseConstants.messages)
-             .order(by: FirebaseConstants.timestamp)//按时间顺讯排列对话框
-            .addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    self.errorMessage = "Failed to listen for recent messages: \(error)"
-                    print(error)
-                    return
-                }
+//        FirebaseManager.shared.firestore
+//             .collection(FirebaseConstants.recentMessages)
+//             .document(uid)
+//             .collection(FirebaseConstants.messages)
+//             .order(by: FirebaseConstants.timestamp)//按时间顺讯排列对话框
+//            .addSnapshotListener { querySnapshot, error in
+//                if let error = error {
+//                    self.errorMessage = "Failed to listen for recent messages: \(error)"
+//                    print(error)
+//                    return
+//                }
+                
+                FirebaseManager.shared.firestore
+                     .collection("recent_messages")
+                     .document(uid)
+                     .collection("messages")
+                     .order(by: "timestamp")//按时间顺讯排列对话框
+                    .addSnapshotListener { querySnapshot, error in
+                        if let error = error {
+                            self.errorMessage = "Failed to listen for recent messages: \(error)"
+                            print(error)
+                            return
+                        }
                 
                 querySnapshot?.documentChanges.forEach({ change in
                         let docId = change.document.documentID
@@ -172,11 +184,8 @@ struct MainMessagesView: View {
                 customNavBar
                 messagesView
 
-                NavigationLink(
-                    destination: ChatLogView(chatUser: vm.selectedUser),
-                    isActive: $vm.shouldNavigateToChatLogView
-                ) {
-                    EmptyView()
+                NavigationLink("", isActive: $shouldNavigateToChatLogView) {
+                    ChatLogView(vm: chatLogViewModel)
                 }
             }
             .overlay(
@@ -247,25 +256,13 @@ struct MainMessagesView: View {
         ScrollView {
             ForEach(vm.recentMessages) { recentMessage in
                 VStack {
-                    Button(action: {
-                                       // 1. 确定聊天对象
-                                       let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromId ? recentMessage.toId : recentMessage.fromId
-                                       
-                                       // 2. 设置聊天用户
-                                       self.chatUser = ChatUser(data: [
-                                           "uid": uid,
-                                           "email": recentMessage.email,
-                                           "profileImageUrl": recentMessage.profileImageUrl
-                                       ])
-                                       
-                                       // 3. 初始化 ChatLogViewModel，并开始获取聊天记录
-                                       let chatLogViewModel = ChatLogViewModel(chatUser: self.chatUser)
-                                       chatLogViewModel.fetchMessages()
-                                       
-                                       // 4. 更新状态以触发导航
-                                       self.vm.shouldNavigateToChatLogView = true
-                                       
-                                   }) {
+                    Button{
+                        let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromId ? recentMessage.toId : recentMessage.fromId
+                        self.chatUser = .init(data: [FirebaseConstants.email: recentMessage.email, FirebaseConstants.profileImageUrl: recentMessage.profileImageUrl, FirebaseConstants.uid: uid])
+                        self.chatLogViewModel.chatUser = self.chatUser
+                        self.chatLogViewModel.fetchMessages()
+                        self.shouldNavigateToChatLogView.toggle()
+                    }label: {
                         HStack(spacing: 16) {
                             WebImage(url: URL(string: recentMessage.profileImageUrl))
                                 .resizable()
@@ -324,9 +321,11 @@ struct MainMessagesView: View {
             CreateNewMessageView(didSelectNewUser: {
                 user in
                 print(user.email)
-                self.vm.selectedUser = user
+                //self.vm.selectedUser = user
                 self.shouldNavigateToChatLogView.toggle()
                 self.chatUser = user
+                self.chatLogViewModel.chatUser = user
+                self.chatLogViewModel.fetchMessages()
             })
         }
     }

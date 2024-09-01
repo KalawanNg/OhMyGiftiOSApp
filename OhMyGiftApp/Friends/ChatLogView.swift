@@ -44,7 +44,7 @@ class ChatLogViewModel: ObservableObject {
     
     @Published var chatMessages = [ChatMessage]()
     
-    let chatUser: ChatUser?
+    var chatUser: ChatUser?
     
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
@@ -163,12 +163,12 @@ class ChatLogViewModel: ObservableObject {
 
 struct ChatLogView: View {
     
-    let chatUser: ChatUser?
-    
-    init(chatUser: ChatUser?) {
-        self.chatUser = chatUser
-        self.vm = .init(chatUser: chatUser)
-    }
+//    let chatUser: ChatUser?
+//    
+//    init(chatUser: ChatUser?) {
+//        self.chatUser = chatUser
+//        self.vm = .init(chatUser: chatUser)
+//    }
     
     @ObservedObject var vm: ChatLogViewModel
     
@@ -178,7 +178,7 @@ struct ChatLogView: View {
             Text(vm.errorMessage)
         }
 
-        .navigationTitle(chatUser?.email ?? "")
+        .navigationTitle(vm.chatUser?.email ?? "")
            // .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -298,9 +298,9 @@ private struct DescriptionPlaceholder: View {
 struct ChatLogView_Previews: PreviewProvider {
     static var previews: some View {
 //                NavigationView {
-                   ChatLogView(chatUser: .init(data: ["uid": "36TLospFonXMJcYKrU7r4YPx1OO2", "email": "appuser3@gmail.com"]))
+//                   ChatLogView(chatUser: .init(data: ["uid": "36TLospFonXMJcYKrU7r4YPx1OO2", "email": "appuser3@gmail.com"]))
 //               }
-        //MainMessagesView()
+        MainMessagesView()
     }
 }
 
