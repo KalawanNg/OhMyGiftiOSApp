@@ -52,13 +52,16 @@ class ChatLogViewModel: ObservableObject {
         fetchMessages()
     }
     
+    var firestoreListener: ListenerRegistration?
+    
     func fetchMessages() {
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid
         else { return }
         
         guard let toId = chatUser?.uid else { return }
-        
-        FirebaseManager.shared.firestore
+        firestoreListener?.remove()
+        chatMessages.removeAll()
+        firestoreListener = FirebaseManager.shared.firestore
             .collection(FirebaseConstants.messages)
             .document(fromId)
             .collection(toId)
@@ -179,7 +182,11 @@ struct ChatLogView: View {
         }
 
         .navigationTitle(vm.chatUser?.email ?? "")
-           // .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            vm.firestoreListener?.remove()
+        }
+
     }
     
     static let emptyScrollToString = "Empty"
@@ -188,7 +195,7 @@ struct ChatLogView: View {
         VStack {
         if #available(iOS 15.0, *) {
             ScrollView {
-                ScrollViewReader { ScrollViewProxy in
+                ScrollViewReader { scrollViewProxy in
                     VStack {
                         ForEach(vm.chatMessages) { message in
                             MessageView(message: message)
@@ -198,8 +205,8 @@ struct ChatLogView: View {
                             .id(Self.emptyScrollToString)
                     }
                     .onReceive(vm.$count) { _ in
-                        withAnimation(.easeOut(duration: 0.5)) {
-                            ScrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
+                        withAnimation(.easeOut(duration: 10)) {
+                            scrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
                         }
                     }
 
