@@ -66,6 +66,7 @@ struct WishDetailView: View {
             }
             .onAppear {
                 viewModel.reloadWish() // 在视图加载时重新加载数据
+                print("testing \(viewModel.wish?.wishName)")
             }
         } else {
             ProgressView()  // 显示加载状态

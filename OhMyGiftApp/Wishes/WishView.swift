@@ -118,6 +118,7 @@ struct WishView: View {
                 }
 
                 Button(action: {
+                 //   GiftNameClass.SelectedGiftName = ""
                     if let selectedWishlistId = selectedWishlistId {
                         let newWish = NewWishModel(
                             userId: FirebaseManager.shared.auth.currentUser?.uid ?? "",
@@ -127,7 +128,8 @@ struct WishView: View {
                             wishPrice: price,
                             wishLink: link,
                             wishQuantity: quantity,
-                            wishDescription: note
+                            wishDescription: note,
+                            maingiftname: viewModel.wish?.maingiftname
                         )
 
                         print("Saving new wish: \(newWish)")
@@ -154,6 +156,12 @@ struct WishView: View {
             .sheet(isPresented: $shouldShowImagePicker) {
                 ImagePicker(image: $image)
             }
+            
+            .onAppear(){
+                print("testing \(viewModel)")
+                print("testing")
+                print("testing \(GiftNameClass.SelectedGiftName)")
+            }
         }
     }
 }
@@ -161,7 +169,7 @@ struct WishView: View {
 struct WishView_Previews: PreviewProvider {
     static var previews: some View {
         WishView(
-            wishlists: .constant([WishlistItem(id: "sample", title: "Sample", subtitle: "1 List", icon: "gift.fill")]),
+            wishlists: .constant([WishlistItem(id: "sample", title: "Sample", subtitle: "1 List", icon: "gift.fill", mycategory: "")]),
             viewModel: WishViewModel(wish: WishModel(
                 id: "sampleID",
                 userId: "sampleUserID",

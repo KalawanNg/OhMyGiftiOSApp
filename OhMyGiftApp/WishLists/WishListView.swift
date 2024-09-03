@@ -110,12 +110,3 @@ struct WishListView: View {
     }
 }
 
-#Preview {
-    WishListView(
-        wishlist: WishListsDummyData.ChrismasWishList,
-        onSave: { newWishlist in
-            // 您可以在这里处理保存后的动作，例如打印、更新视图等
-            print("New wishlist saved: \(newWishlist)")
-        }
-    )
-}

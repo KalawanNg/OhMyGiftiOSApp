@@ -16,6 +16,7 @@ struct WishListModel: Identifiable, Codable, Hashable {
     var imageName: String
     var wishlistDescription: String?
     var dateCreated: Date
+    var maingiftname: String?
 }
 struct NewWishListModel {
     var id: String
@@ -23,4 +24,5 @@ struct NewWishListModel {
     var wishlistName: String
     var imageName: UIImage?
     var wishlistDescription: String
+    var maingiftname: String?
 }

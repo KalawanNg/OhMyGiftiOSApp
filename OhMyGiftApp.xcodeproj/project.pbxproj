@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D19725D2C86DA7800C3685F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D19725C2C86DA7800C3685F /* GoogleService-Info.plist */; };
+		9D9358992C8735160078AE5A /* GiftNameClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9358982C8735160078AE5A /* GiftNameClass.swift */; };
 		B913C0982C493CC1000D0492 /* OhMyGiftAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0972C493CC1000D0492 /* OhMyGiftAppApp.swift */; };
 		B913C09A2C493CC1000D0492 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0992C493CC1000D0492 /* ContentView.swift */; };
 		B913C09C2C493CC4000D0492 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B913C09B2C493CC4000D0492 /* Assets.xcassets */; };
@@ -16,7 +18,6 @@
 		B913C0AA2C494AB6000D0492 /* WishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A92C494AB6000D0492 /* WishView.swift */; };
 		B934BD262C6043F6004F3B07 /* WishListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD252C6043F6004F3B07 /* WishListDetailView.swift */; };
 		B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD272C6427C2004F3B07 /* LogInView.swift */; };
-		B934BD2F2C668BFC004F3B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */; };
 		B934BD312C66E431004F3B07 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD302C66E431004F3B07 /* ImagePicker.swift */; };
 		B934BD3A2C6A7307004F3B07 /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD392C6A7307004F3B07 /* MainMessagesView.swift */; };
 		B934BD3D2C6BB192004F3B07 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD3C2C6BB192004F3B07 /* FirebaseManager.swift */; };
@@ -44,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D19725C2C86DA7800C3685F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9D9358982C8735160078AE5A /* GiftNameClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftNameClass.swift; sourceTree = "<group>"; };
 		B913C0942C493CC1000D0492 /* OhMyGiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhMyGiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B913C0972C493CC1000D0492 /* OhMyGiftAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhMyGiftAppApp.swift; sourceTree = "<group>"; };
 		B913C0992C493CC1000D0492 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,7 +57,6 @@
 		B913C0A92C494AB6000D0492 /* WishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishView.swift; sourceTree = "<group>"; };
 		B934BD252C6043F6004F3B07 /* WishListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListDetailView.swift; sourceTree = "<group>"; };
 		B934BD272C6427C2004F3B07 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
-		B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B934BD302C66E431004F3B07 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B934BD392C6A7307004F3B07 /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 		B934BD3C2C6BB192004F3B07 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -118,9 +120,9 @@
 				B97BC9232C81499700E7CF8A /* Wishes */,
 				B9FE16822C79361F00C72A20 /* Friends */,
 				B913C0972C493CC1000D0492 /* OhMyGiftAppApp.swift */,
-				B934BD2E2C668BFC004F3B07 /* GoogleService-Info.plist */,
 				B913C0992C493CC1000D0492 /* ContentView.swift */,
 				B913C0A52C4940BA000D0492 /* AppMainView.swift */,
+				9D19725C2C86DA7800C3685F /* GoogleService-Info.plist */,
 				B934BD272C6427C2004F3B07 /* LogInView.swift */,
 				B913C09B2C493CC4000D0492 /* Assets.xcassets */,
 				B913C09D2C493CC4000D0492 /* Preview Content */,
@@ -159,6 +161,7 @@
 				B9FE168A2C7B889C00C72A20 /* WishListViewModel.swift */,
 				B9FE16922C7E2D4800C72A20 /* WishModel.swift */,
 				B97BC9202C81432000E7CF8A /* WishViewModel.swift */,
+				9D9358982C8735160078AE5A /* GiftNameClass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,7 +274,7 @@
 			files = (
 				B913C09F2C493CC4000D0492 /* Preview Assets.xcassets in Resources */,
 				B913C09C2C493CC4000D0492 /* Assets.xcassets in Resources */,
-				B934BD2F2C668BFC004F3B07 /* GoogleService-Info.plist in Resources */,
+				9D19725D2C86DA7800C3685F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +288,7 @@
 				B934BD3D2C6BB192004F3B07 /* FirebaseManager.swift in Sources */,
 				B934BD262C6043F6004F3B07 /* WishListDetailView.swift in Sources */,
 				B9FE16912C7E2CCA00C72A20 /* WishListModel.swift in Sources */,
+				9D9358992C8735160078AE5A /* GiftNameClass.swift in Sources */,
 				B97BC9252C8149CA00E7CF8A /* WishCardView.swift in Sources */,
 				B913C09A2C493CC1000D0492 /* ContentView.swift in Sources */,
 				B97BC9212C81432000E7CF8A /* WishViewModel.swift in Sources */,
@@ -367,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -424,7 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -442,7 +446,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OhMyGiftApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 4N5Z2T5953;
+				DEVELOPMENT_TEAM = WXVZ7AA2UP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -471,7 +475,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OhMyGiftApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 4N5Z2T5953;
+				DEVELOPMENT_TEAM = WXVZ7AA2UP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -38,7 +38,8 @@ class WishListsRepository: ObservableObject {
                             imageName: document["imageName"] as? String ?? "",
                             wishlistDescription: document["wishlistDescription"] as? String ?? nil,
                             //  categories: document["categories"] as? [Category] ?? nil,
-                            dateCreated: date
+                            dateCreated: date,
+                            maingiftname:document["maingiftname"] as? String ?? ""
                         )
                         
                         completion(nil, error)
@@ -105,7 +106,8 @@ class WishListsRepository: ObservableObject {
             "wishlistName": wishlist.wishlistName,
             "imageName": imageUrl ?? "",
             "wishlistDescription": wishlist.wishlistDescription ?? "",
-            "dateCreated": dateString
+            "dateCreated": dateString,
+            "maingiftname":wishlist.wishlistName
         ]
         
         // 直接使用闭包中的 documentReference 变量
@@ -149,7 +151,8 @@ class WishListsRepository: ObservableObject {
                         wishlistName: document["wishlistName"] as? String ?? "",
                         imageName: document["imageName"] as? String ?? "",
                         wishlistDescription: document["wishlistDescription"] as? String ?? nil,
-                        dateCreated: date
+                        dateCreated: date,
+                        maingiftname:document["maingiftname"] as? String ?? ""
                     )
                                     
                     wishlistsArray.append(wishlist)
@@ -189,7 +192,8 @@ class WishListsRepository: ObservableObject {
                                 wishlistName: document["wishlistName"] as? String ?? "",
                                 imageName: document["imageName"] as? String ?? "",
                                 wishlistDescription: document["wishlistDescription"] as? String ?? "",
-                                dateCreated: date
+                                dateCreated: date,
+                                maingiftname:document["maingiftname"] as? String ?? ""
                             )
                             wishlistsArray.append(wishlist)
                         }
@@ -231,7 +235,8 @@ class WishListsRepository: ObservableObject {
                     wishlistName: data["wishlistName"] as? String ?? "",
                     imageName: data["imageName"] as? String ?? "",
                     wishlistDescription: data["wishlistDescription"] as? String ?? "",
-                    dateCreated: date
+                    dateCreated: date,
+                    maingiftname:data["maingiftname"] as? String ?? ""
                 )
             }
         }
@@ -260,7 +265,8 @@ class WishListsRepository: ObservableObject {
                     wishLink: document["wishLink"] as? String ?? "",
                     wishQuantity: wishQuantity,
                     wishDescription: document["wishDescription"] as? String ?? "",
-                    dateCreated: (document["dateCreated"] as? Timestamp)?.dateValue() ?? Date()
+                    dateCreated: (document["dateCreated"] as? Timestamp)?.dateValue() ?? Date(),
+                    maingiftname:document["maingiftname"] as? String ?? ""
                 )
                 wishes.append(wish)
             }
@@ -361,7 +367,7 @@ class WishListsRepository: ObservableObject {
                             wishImageName: document["wishImageName"] as? String ?? "",
                             wishPrice: document["wishPrice"] as? String ?? "",
                             wishLink: document["wishLink"] as? String ?? "",
-                            wishQuantity: wishQuantity,
+                            wishQuantity: wishQuantity,//wishMainKey
                             wishDescription: document["wishDescription"] as? String ?? "",
                             dateCreated: date
                         )
@@ -420,7 +426,8 @@ class WishListsRepository: ObservableObject {
             "wishLink": wish.wishLink,
             "wishQuantity": wish.wishQuantity ?? 1,
             "wishDescription": wish.wishDescription ?? "",
-            "dateCreated": dateString
+            "dateCreated": dateString,
+            "maingiftname": GiftNameClass.SelectedGiftName
         ]
         
         db.collection("wishes").addDocument(data: data) { error in
@@ -508,7 +515,8 @@ class WishListsRepository: ObservableObject {
                     wishLink: document["wishLink"] as? String ?? "",
                     wishQuantity: wishQuantity,
                     wishDescription: document["wishDescription"] as? String ?? "",
-                    dateCreated: (document["dateCreated"] as? Timestamp)?.dateValue() ?? Date()
+                    dateCreated: (document["dateCreated"] as? Timestamp)?.dateValue() ?? Date(),
+                    maingiftname: document["maingiftname"] as? String ?? ""
                 )
                 wishesArray.append(wish)
             }

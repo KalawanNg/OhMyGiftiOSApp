@@ -19,6 +19,8 @@ struct WishModel: Identifiable, Codable, Hashable {
     var wishQuantity: String?
     var wishDescription: String?
     var dateCreated: Date
+    var maingiftname: String?
+    
 }
 
 struct NewWishModel {
@@ -30,6 +32,7 @@ struct NewWishModel {
     var wishLink: String?
     var wishQuantity: String?
     var wishDescription: String?
+    var maingiftname: String?
 }
 
 

@@ -1,19 +1,22 @@
 
 import SwiftUI
+import SwiftUI
 
 struct WishlistItem: Identifiable {
     var id: String
     var title: String
     var subtitle: String
     var icon: String
+    var mycategory:String
 }
 
 struct AppMainView: View {
     @State private var showingWishListView = false
+    @State private var selectedWishlistModel: WishListModel? // 用于存储选择的 wishlist 模型
+    @State private var keyname: String = "" // 用于存储 keyname
     @ObservedObject private var wishlistsRepository = WishListsRepository()
     @State private var wishlistItems: [WishlistItem] = []
-    @State private var showingOptions = false
-   
+
     var body: some View {
         NavigationView {
             VStack {
@@ -37,7 +40,7 @@ struct AppMainView: View {
                 // 主内容区域
                 ScrollView {
                     LazyVStack(spacing: 20) {
-                        ForEach(wishlistItems) { item in  // 移除 $
+                        ForEach(wishlistItems) { item in
                             let wishListModel = WishListModel(
                                 wishlistId: item.id,
                                 userId: FirebaseManager.shared.auth.currentUser?.uid ?? "",
@@ -47,16 +50,28 @@ struct AppMainView: View {
                                 dateCreated: Date()  // 使用实际的创建日期
                             )
 
+                            // 使用 NavigationLink 包裹 WishListCardView
                             NavigationLink(destination: WishListDetailView(
                                 viewModel: WishListViewModel(wishlist: wishListModel, wishListId: item.id),
+                                keyname: $keyname,
                                 wishlists: $wishlistItems
-                            )) {
-                                WishListCardView(title: item.title, subtitle: item.subtitle, icon: item.icon)
+                            ).onAppear {
+                                // 在目标视图出现时更新 keyname
+                                keyname = item.title
+                            }) {
+                                WishListCardView(title: item.title, subtitle: item.subtitle, imageKey: item.icon)
                                     .padding()
                                     .background(Color.white)
                                     .cornerRadius(10)
                                     .shadow(radius: 5)
                             }
+                            .simultaneousGesture(TapGesture().onEnded {
+                                // 点击后延迟 2 秒执行打印
+                               
+                                    print("testing ok \(item.title)")
+                                    GiftNameClass.SelectedGiftName = item.title
+                                
+                            })
                         }
                     }
                     .padding()
@@ -64,7 +79,6 @@ struct AppMainView: View {
                 Spacer()
 
                 // 底部导航栏
-                Spacer()
                 ZStack {
                     HStack {
                         VStack {
@@ -127,28 +141,28 @@ struct AppMainView: View {
             .onAppear {
                 loadUserWishlists()
             }
-
+            
             .sheet(isPresented: $showingWishListView) {
-                WishListView(
-                    wishlist: WishListModel(
-                        wishlistId: UUID().uuidString,
-                        userId: FirebaseManager.shared.auth.currentUser?.uid ?? "",
-                        wishlistName: "",
-                        imageName: "",
-                        wishlistDescription: "",
-                        dateCreated: Date()
-                    ),
-                    onSave: { newWishlist in
-                        let wishlistItem = WishlistItem(
-                            id: newWishlist.id,
-                            title: newWishlist.wishlistName,
-                            subtitle: newWishlist.wishlistDescription ?? "",
-                            icon: "gift.fill"  // 根据需要传递图标或图片
-                        )
-                        wishlistItems.append(wishlistItem)
-                    }
-                )
-            }
+                           WishListView(
+                               wishlist: WishListModel(
+                                   wishlistId: UUID().uuidString,
+                                   userId: FirebaseManager.shared.auth.currentUser?.uid ?? "",
+                                   wishlistName: "",
+                                   imageName: "",
+                                   wishlistDescription: "",
+                                   dateCreated: Date()
+                               ),
+                               onSave: { newWishlist in
+                                   let wishlistItem = WishlistItem(
+                                       id: newWishlist.id,
+                                       title: newWishlist.wishlistName,
+                                       subtitle: newWishlist.wishlistDescription ?? "",
+                                       icon: "gift.fill", mycategory: newWishlist.wishlistName // 根据需要传递图标或图片
+                                   )
+                                   wishlistItems.append(wishlistItem)
+                               }
+                           )
+                       }
         }
     }
 
@@ -161,7 +175,7 @@ struct AppMainView: View {
                         id: wishlist.id,
                         title: wishlist.wishlistName,
                         subtitle: wishlist.wishlistDescription ?? "",
-                        icon: wishlist.imageName  // 使用正确的图标
+                        icon: wishlist.imageName, mycategory: wishlist.maingiftname ?? ""  // 使用正确的图标
                     )
                 }
             } else if let error = error {
@@ -169,9 +183,7 @@ struct AppMainView: View {
             }
         }
     }
-
 }
-
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {

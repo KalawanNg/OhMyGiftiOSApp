@@ -167,7 +167,7 @@ class ChatLogViewModel: ObservableObject {
 struct ChatLogView: View {
     
 //    let chatUser: ChatUser?
-//    
+//
 //    init(chatUser: ChatUser?) {
 //        self.chatUser = chatUser
 //        self.vm = .init(chatUser: chatUser)
@@ -310,4 +310,3 @@ struct ChatLogView_Previews: PreviewProvider {
         MainMessagesView()
     }
 }
-

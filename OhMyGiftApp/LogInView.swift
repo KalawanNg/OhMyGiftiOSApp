@@ -19,48 +19,46 @@ struct LogInView: View {
     @State var loginStatusMessage = ""
     @State var image: UIImage?
     
+    @State private var isPresentingMainView = false // 新增的状态变量
+    
     private var profileRepository = ChatUserRepository()
     
     init(didCompleteLoginProcess: @escaping () -> (), testProfile: Bool = false) {
         self.didCompleteLoginProcess = didCompleteLoginProcess
         
-        // 为测试环境添加一个测试用的Profile
         if testProfile {
-            // 在测试模式下，设置一个虚拟的ChatUser，避免Firebase的依赖
             FirebaseManager.shared.currentUser = ChatUser(data: ["uid": "dummyUid", "email": "test@example.com", "profileImageUrl": "defaultIcon.jpeg"])
         } else {
-            // 正常的初始化过程
             observeAuthChanges()
         }
     }
     
     private func observeAuthChanges() {
         FirebaseManager.shared.auth.addStateDidChangeListener { _, user in
-            // 如果用户已登录
             if let user = user {
                 print("User \(user.uid) signed in.")
-                
-                // 从 Firebase Firestore 中获取用户的 Profile 信息
-                self.profileRepository.fetchProfile(userId: user.uid) { profile, error in
-                    if let error = error {
-                        print("Error while fetching the user profile: \(error)")
-                        self.loginStatusMessage = "Error fetching profile: \(error.localizedDescription)"
-                        return
-                    }
-                    
-                    if let profile = profile {
-                        // 更新 FirebaseManager 中的 currentUser
-                        FirebaseManager.shared.currentUser = profile
-                        print("Fetched user profile: \(profile.email)")
-                        self.didCompleteLoginProcess()  // 登录成功后通知父视图
-                    } else {
-                        print("Error: User profile not found.")
-                    }
-                }
+                self.fetchUserProfile(for: user.uid)
             } else {
-                // 如果用户已登出
                 print("User signed out.")
                 FirebaseManager.shared.currentUser = nil
+            }
+        }
+    }
+    
+    private func fetchUserProfile(for uid: String) {
+        self.profileRepository.fetchProfile(userId: uid) { profile, error in
+            if let error = error {
+                print("Error while fetching the user profile: \(error)")
+                self.loginStatusMessage = "Error fetching profile: \(error.localizedDescription)"
+                return
+            }
+            
+            if let profile = profile {
+                FirebaseManager.shared.currentUser = profile
+                print("Fetched user profile: \(profile.email)")
+                self.isPresentingMainView = true // 登录成功后显示MainView
+            } else {
+                print("Error: User profile not found.")
             }
         }
     }
@@ -83,20 +81,8 @@ struct LogInView: View {
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
             
-            // 获取用户的Profile信息
             if let uid = result?.user.uid {
-                self.profileRepository.fetchProfile(userId: uid) { profile, error in
-                    if let error = error {
-                        print("Error while fetching the user profile: \(error)")
-                        self.loginStatusMessage = "Error fetching profile: \(error.localizedDescription)"
-                        return
-                    }
-                    
-                    if let profile = profile {
-                        FirebaseManager.shared.currentUser = profile
-                        self.didCompleteLoginProcess()  // 通知父视图登录流程完成
-                    }
-                }
+                fetchUserProfile(for: uid) // 获取用户的Profile信息
             }
         }
     }
@@ -150,7 +136,7 @@ struct LogInView: View {
             }
             FirebaseManager.shared.currentUser = chatUser
             self.loginStatusMessage = "Successfully saved user profile"
-            self.didCompleteLoginProcess()  // 通知父视图登录流程完成
+            self.isPresentingMainView = true // 创建账户成功后显示MainView
         }
     }
     
@@ -219,13 +205,9 @@ struct LogInView: View {
             .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
                 ImagePicker(image: $image)
             }
+            .fullScreenCover(isPresented: $isPresentingMainView) { // 显示MainView
+                AppMainView()
+            }
         }
     }
 }
-
-
-#Preview {
-    LogInView(didCompleteLoginProcess: {}, testProfile: true)
-}
-
-
