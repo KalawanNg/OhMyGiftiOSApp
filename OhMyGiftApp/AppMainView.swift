@@ -94,14 +94,14 @@ struct AppMainView: View {
                             }
                         }.frame(maxWidth: .infinity)
 
-                        NavigationLink(destination: ProfileView()) {
+                        NavigationLink(destination: GiftPickerView()) {
                             VStack {
                                 Image(systemName: "bell.fill")
-                                Text("Inbox")
+                                Text("Inspiration")
                             }
                         }.frame(maxWidth: .infinity)
 
-                        NavigationLink(destination: LogInView(didCompleteLoginProcess: {})) {
+                        NavigationLink(destination: ProfileView()) {
                             VStack {
                                 Image(systemName: "gearshape.fill")
                                 Text("Settings")
@@ -118,6 +118,7 @@ struct AppMainView: View {
                             .stroke(Color.white, lineWidth: 1)
                     )
                     .shadow(radius: 10)
+                    
 
                     Button(action: {
                         showingWishListView = true

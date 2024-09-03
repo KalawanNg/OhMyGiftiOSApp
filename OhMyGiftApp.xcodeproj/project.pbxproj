@@ -16,6 +16,7 @@
 		B913C0A62C4940BA000D0492 /* AppMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A52C4940BA000D0492 /* AppMainView.swift */; };
 		B913C0A82C494AA4000D0492 /* WishListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A72C494AA4000D0492 /* WishListCardView.swift */; };
 		B913C0AA2C494AB6000D0492 /* WishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913C0A92C494AB6000D0492 /* WishView.swift */; };
+		B91F88802C87AA2F00519376 /* GiftPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91F887F2C87AA2F00519376 /* GiftPickerView.swift */; };
 		B934BD262C6043F6004F3B07 /* WishListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD252C6043F6004F3B07 /* WishListDetailView.swift */; };
 		B934BD282C6427C2004F3B07 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD272C6427C2004F3B07 /* LogInView.swift */; };
 		B934BD312C66E431004F3B07 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934BD302C66E431004F3B07 /* ImagePicker.swift */; };
@@ -55,6 +56,7 @@
 		B913C0A52C4940BA000D0492 /* AppMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainView.swift; sourceTree = "<group>"; };
 		B913C0A72C494AA4000D0492 /* WishListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCardView.swift; sourceTree = "<group>"; };
 		B913C0A92C494AB6000D0492 /* WishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishView.swift; sourceTree = "<group>"; };
+		B91F887F2C87AA2F00519376 /* GiftPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPickerView.swift; sourceTree = "<group>"; };
 		B934BD252C6043F6004F3B07 /* WishListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListDetailView.swift; sourceTree = "<group>"; };
 		B934BD272C6427C2004F3B07 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		B934BD302C66E431004F3B07 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		B913C0962C493CC1000D0492 /* OhMyGiftApp */ = {
 			isa = PBXGroup;
 			children = (
+				B91F887E2C87A9DE00519376 /* GiftPicker */,
 				B9A4D4812C827E6400A75A65 /* UserProfile */,
 				B934BD412C71982B004F3B07 /* Model */,
 				B934BD3B2C6BB16D004F3B07 /* Utils */,
@@ -136,6 +139,14 @@
 				B913C09E2C493CC4000D0492 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B91F887E2C87A9DE00519376 /* GiftPicker */ = {
+			isa = PBXGroup;
+			children = (
+				B91F887F2C87AA2F00519376 /* GiftPickerView.swift */,
+			);
+			path = GiftPicker;
 			sourceTree = "<group>";
 		};
 		B934BD3B2C6BB16D004F3B07 /* Utils */ = {
@@ -295,6 +306,7 @@
 				B913C0A82C494AA4000D0492 /* WishListCardView.swift in Sources */,
 				B9FE168F2C7D524E00C72A20 /* ChatUserRepository.swift in Sources */,
 				B97BC9272C814A3A00E7CF8A /* WishDetailView.swift in Sources */,
+				B91F88802C87AA2F00519376 /* GiftPickerView.swift in Sources */,
 				B913C0AA2C494AB6000D0492 /* WishView.swift in Sources */,
 				B934BD452C719DCA004F3B07 /* CreateNewMessageView.swift in Sources */,
 				B9A4D4852C827ED200A75A65 /* ProfileView.swift in Sources */,
