@@ -31,9 +31,9 @@ struct WishCardView: View {
             Spacer()
         }
         .padding()
-        .background(Color(red: 2485/255, green: 227/255, blue: 225/255))
+       // .background(Color(red: 2485/255, green: 227/255, blue: 225/255))
         .cornerRadius(10)
-        .shadow(radius: 5)
+       // .shadow(radius: 1)
     }
 }
 

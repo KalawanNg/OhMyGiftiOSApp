@@ -88,7 +88,9 @@ struct WishListDetailView: View {
                     wishItems.append(wishItem)
                 }
             }
-        }.onAppear {
+        }
+        .background(Color(red: 232/255, green: 238/255, blue: 255/255))
+        .onAppear {
             loadUserWishes()
           
         }

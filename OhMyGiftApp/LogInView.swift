@@ -147,7 +147,9 @@ struct LogInView: View {
                     Picker(selection: $isLoginMode, label: Text("Picker here")) {
                         Text("Login").tag(true)
                         Text("Create Account").tag(false)
-                    }.pickerStyle(SegmentedPickerStyle()).padding()
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
                     
                     if !isLoginMode {
                         Button {
@@ -159,16 +161,16 @@ struct LogInView: View {
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 138, height: 138)
-                                        .cornerRadius(64)
+                                        .clipShape(Circle())
                                 } else {
                                     Image(systemName: "person.fill")
                                         .font(.system(size: 64))
                                         .padding()
-                                        .foregroundColor(Color(.label))
+                                        .foregroundColor(.primary)
+                                        .background(Color.white.clipShape(Circle()))
+                                        .overlay(Circle().stroke(Color.black, lineWidth: 3))
                                 }
                             }
-                            .overlay(RoundedRectangle(cornerRadius: 64)
-                                .stroke(Color.black, lineWidth: 3))
                         }
                     }
                     
@@ -176,38 +178,50 @@ struct LogInView: View {
                         TextField("Email", text: $email)
                             .keyboardType(.emailAddress)
                             .autocapitalization(.none)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+                            .shadow(radius: 5)
                         
                         SecureField("Password", text: $password)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+                            .shadow(radius: 5)
                     }
-                    .padding()
-                    .background(Color.white)
+                   // .padding(.horizontal)
+                    .padding(15)
+                    
+                    Spacer()
                     
                     Button {
                         handleAction()
                     } label: {
-                        HStack {
-                            Spacer()
-                            Text(isLoginMode ? "Log In" : "Create Account")
-                                .foregroundStyle(Color.white)
-                                .padding(.vertical, 10)
-                                .font(.system(size: 14, weight: .semibold))
-                            Spacer()
-                        }.background(Color.blue)
+                        Text(isLoginMode ? "Log In" : "Create Account")
+                            .foregroundColor(.white)
+                            .padding()
+                            .font(.system(size: 16, weight: .semibold))
+                            .frame(maxWidth: .infinity)
+                            .background(Color(red: 66/255, green: 72/255, blue: 116/255))
+                            .cornerRadius(8)
                     }
                     
-                    Text(self.loginStatusMessage).foregroundStyle(Color.red)
+                    Text(loginStatusMessage)
+                        .foregroundColor(.red)
+                        .padding()
                 }
                 .padding()
                 .navigationTitle(isLoginMode ? "Log In" : "Create Account")
-                .background(Color(UIColor(white: 0, alpha: 0.05)).ignoresSafeArea())
+                .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
                 ImagePicker(image: $image)
             }
-            .fullScreenCover(isPresented: $isPresentingMainView) { // 显示MainView
+            .fullScreenCover(isPresented: $isPresentingMainView) {
                 AppMainView()
             }
         }
     }
+
 }

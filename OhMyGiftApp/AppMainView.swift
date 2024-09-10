@@ -28,14 +28,17 @@ struct AppMainView: View {
                         .foregroundColor(Color(red: 246/255, green: 246/255, blue: 246/255))
                     Spacer()
                     HStack(spacing: 20) {
-                        Image(systemName: "arrow.up.arrow.down")
-                        Image(systemName: "line.horizontal.3")
+                        Image(systemName: "gift.fill")
                     }
+                    .font(.title)
                     .bold()
                     .foregroundColor(Color(red: 246/255, green: 246/255, blue: 246/255))
+                    .padding()
                 }
                 .padding()
-                .background(Color(red: 66/255, green: 72/255, blue: 116/255))
+             .background(Color(red: 66/255, green: 72/255, blue: 116/255))
+             // .background(Color(red: 224/255, green: 33/255, blue: 138/255))//224, 33, 138
+
 
                 // 主内容区域
                 ScrollView {
@@ -62,8 +65,8 @@ struct AppMainView: View {
                                 WishListCardView(title: item.title, subtitle: item.subtitle, imageKey: item.icon)
                                     .padding()
                                     .background(Color.white)
-                                    .cornerRadius(10)
-                                    .shadow(radius: 5)
+                                    .cornerRadius(20)
+                                   
                             }
                             .simultaneousGesture(TapGesture().onEnded {
                                 // 点击后延迟 2 秒执行打印
@@ -81,44 +84,41 @@ struct AppMainView: View {
                 // 底部导航栏
                 ZStack {
                     HStack {
-                        VStack {
+                        Button(action: {}) {
+                        VStack(spacing:10) {
                             Image(systemName: "heart.fill")
                             Text("Wishlists")
                         }
-                        .frame(maxWidth: .infinity)
+                    } .frame(maxWidth: .infinity)
 
                         NavigationLink(destination: MainMessagesView()) {
-                            VStack {
-                                Image(systemName: "person.2.fill")
-                                Text("Friends")
+                            VStack(spacing:10) {
+                                Image(systemName: "ellipsis.message.fill")
+                                Text("Messages")
                             }
                         }.frame(maxWidth: .infinity)
 
                         NavigationLink(destination: GiftPickerView()) {
-                            VStack {
-                                Image(systemName: "bell.fill")
+                            VStack(spacing:10) {
+                                Image(systemName: "lightbulb.max.fill")
                                 Text("Inspiration")
                             }
                         }.frame(maxWidth: .infinity)
 
                         NavigationLink(destination: ProfileView()) {
-                            VStack {
-                                Image(systemName: "gearshape.fill")
+                            VStack(spacing:10) {
+                                Image(systemName: "gear")
                                 Text("Settings")
                             }
                         }.frame(maxWidth: .infinity)
                     }
                     .bold()
-                    .padding(.vertical, 15)
+                    .padding(.vertical, 10)
                     .background(Color(red: 66/255, green: 72/255, blue: 116/255))
+                   // .background(Color(red: 224/255, green: 33/255, blue: 138/255))
                     .foregroundColor(Color(red: 246/255, green: 246/255, blue: 246/255))
-                    .cornerRadius(20, corners: [.topLeft, .topRight])
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.white, lineWidth: 1)
-                    )
-                    .shadow(radius: 10)
-                    
+                 
+                
 
                     Button(action: {
                         showingWishListView = true
@@ -132,12 +132,13 @@ struct AppMainView: View {
                             .clipShape(Circle())
                             .shadow(radius: 5)
                     }
-                    .padding(.bottom, -10)
+                    .padding(.bottom, -5)
                     .offset(y: -30)
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 0)
             }
-            .background(Color(red: 244/255, green: 238/255, blue: 255/255))
+            .background(Color(red: 232/255, green: 238/255, blue: 255/255))
+            
             .navigationBarHidden(true)
             .onAppear {
                 loadUserWishlists()

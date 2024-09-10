@@ -22,19 +22,23 @@ struct WishListCardView: View {
                 Text(title)
                     .font(.title2)
                     .bold()
+                    .foregroundColor(.black)
+                
                 Text(subtitle)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.leading)
+                    .padding(.top,20)
             }
             Spacer()
             if let image = image {
                 image
                     .resizable()
-                    .cornerRadius(20)
+         
                     .scaledToFill()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 100, height: 50)
                     .padding()
+                    .clipShape(Circle())
                    
                    
             } else if isLoading {
@@ -45,15 +49,14 @@ struct WishListCardView: View {
             } else {
                 Image(systemName: "photo")  // 默认图标
                     .resizable()
+                    .scaledToFill()
                     .frame(width: 40, height: 40)
                     .padding()
             }
         }
         .padding()
-        .foregroundColor(Color(red: 12/255, green: 45/255, blue: 87/255))
-        .background(Color(red: 248/255, green: 227/255, blue: 225/255))  // 修正了 RGB 值
         .cornerRadius(10)
-        .shadow(radius: 5)
+
         .onAppear {
             downloadImage(key: imageKey)
         }
@@ -63,7 +66,8 @@ struct WishListCardView: View {
         let storage = Storage.storage()
         let imageRef = storage.reference(withPath: key)
 
-        imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+        // Convert Int to Int64 for maxSize
+        imageRef.getData(maxSize: Int64(10 * 1024 * 1024)) { data, error in
             if let error = error {
                 print("Error downloading image: \(error.localizedDescription)")
                 self.isLoading = false

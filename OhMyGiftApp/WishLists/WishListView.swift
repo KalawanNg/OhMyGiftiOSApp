@@ -91,7 +91,7 @@ struct WishListView: View {
                                 .font(.headline)
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(Color.blue)
+                                .background(Color(red: 66/255, green: 72/255, blue: 116/255))
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                     }
@@ -100,6 +100,7 @@ struct WishListView: View {
                         }
                             .padding(.top)
                                 }
+            .background(Color(red: 246/255, green: 246/255, blue: 246/255))
             .navigationBarItems(trailing: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })

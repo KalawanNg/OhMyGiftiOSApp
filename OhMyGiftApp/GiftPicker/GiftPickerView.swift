@@ -29,7 +29,7 @@ struct Gift: Equatable {
         Gift(name: "Music", image: "🎼🎻🎹🎺", price: 80, carb: 4, fat: 4, protein: 6),
         Gift(name: "Game", image: "🎮🎧🎰", price: 80, carb: 4, fat: 4, protein: 6),
         Gift(name: "Stationary", image: "🎨✒️📏📎", price: 80, carb: 4, fat: 4, protein: 6),
-        Gift(name: "Realisic & Pratical", image: "💳 💷 💶 💴", price: 80, carb: 4, fat: 4, protein: 6),
+        Gift(name: "Realisic & Pratical", image: "💷 💶 💴", price: 80, carb: 4, fat: 4, protein: 6),
     ]
 }
 
@@ -39,11 +39,18 @@ struct GiftPickerView: View {
     @State private var showinfo: Bool = false
     
     var body: some View {
+        ZStack {
+                Image("gift")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 350, height: 550)
+                    .opacity(0.22)
+                    .position(CGPoint(x: 200, y: 300))
             VStack(spacing: 30) {
                 Group {
                     if let selectedFood = selectedFood {
                         Text(selectedFood.image)
-                            .font(.system(size: 80))
+                            .font(.system(size: 70))
                             .minimumScaleFactor(0.7)
                     } else {
                         Image("noodles")
@@ -52,63 +59,66 @@ struct GiftPickerView: View {
                     }
                 }
                 .frame(height: 250)
-                .border(Color(.secondarySystemBackground))
+               // .border(Color(.secondarySystemBackground))
+                .padding()
+                Spacer()
                 
                 Text("🩵 Inspire Me 🩵")
                     .font(.largeTitle)
                     .bold()
-                    .foregroundStyle(.pink)
+                    .foregroundStyle(Color(red: 46/255, green: 7/255, blue: 63/255))//224, 33, 138
                 
                 HStack {
                     if let selectedFood = selectedFood {
                         Text(selectedFood.name)
                             .font(.largeTitle)
                             .bold()
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(Color(red: 224/255, green: 33/255, blue: 138/255))
                             .id(selectedFood.name)
                             .transition(.identity)
-                        Button {
-                            showinfo.toggle()
-                        } label: {
-                            Image(systemName: "info.circle.fill")
-                                .foregroundColor(.secondary)
-                        }.buttonStyle(.plain)
+//                        Button {
+//                            showinfo.toggle()
+//                        } label: {
+//                            Image(systemName: "info.circle.fill")
+//                                .foregroundColor(.secondary)
+//                        }.buttonStyle(.plain)
                     }
                 }
+        
                 
-                if let selectedFood = selectedFood {
-                    Text("Price \(selectedFood.price.formatted()) ")
-                        .font(.title2)
-                    
-                    VStack{
-                    if showinfo {
-                        Grid(horizontalSpacing: 12, verticalSpacing: 12){
-                            GridRow{
-                                Text("Protein")
-                                Text("Fat")
-                                Text("Carb")
-                            }.frame(minWidth: 60)
-                            
-                            Divider()
-                                .gridCellUnsizedAxes(.horizontal)
-                                .padding(.horizontal, -10)
-                            
-                            GridRow{
-                                Text(selectedFood.protein.formatted() + "g")
-                                Text(selectedFood.fat.formatted() + "g")
-                                Text(selectedFood.carb.formatted() + "g")
-                            }
-                        }
-                        .font(.title3)
-                        .padding(.horizontal)
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 8).foregroundStyle(.background))
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                    }
-                }
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .clipped()
-                }
+//                if let selectedFood = selectedFood {
+//                    Text("Price \(selectedFood.price.formatted()) ")
+//                        .font(.title2)
+//                    
+//                    VStack{
+//                        if showinfo {
+//                            Grid(horizontalSpacing: 12, verticalSpacing: 12){
+//                                GridRow{
+//                                    Text("Protein")
+//                                    Text("Fat")
+//                                    Text("Carb")
+//                                }.frame(minWidth: 60)
+//                                
+//                                Divider()
+//                                    .gridCellUnsizedAxes(.horizontal)
+//                                    .padding(.horizontal, -10)
+//                                
+//                                GridRow{
+//                                    Text(selectedFood.protein.formatted() + "g")
+//                                    Text(selectedFood.fat.formatted() + "g")
+//                                    Text(selectedFood.carb.formatted() + "g")
+//                                }
+//                            }
+//                            .font(.title3)
+//                            .padding(.horizontal)
+//                            .padding()
+//                            .background(RoundedRectangle(cornerRadius: 8).foregroundStyle(.background))
+//                            .transition(.move(edge: .top).combined(with: .opacity))
+//                        }
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                    .clipped()
+//                }
                 
                 Spacer()
                 
@@ -121,12 +131,16 @@ struct GiftPickerView: View {
                 .font(.title2)
                 .bold()
                 .padding(.bottom, -15)
+                .buttonStyle(BorderedProminentButtonStyle())
+                .tint(Color(red: 66/255, green: 72/255, blue: 116/255))//rgb(46, 7, 63)
                 
                 Button(role: .none) {
                     selectedFood = nil
                     showinfo = false
                 } label: {
-                    Text("Reset 👀").frame(width: 200)
+                    Text("Reset 👀")
+                        .frame(width: 200)
+                               .foregroundColor(Color(red: 12/255, green: 24/255, blue: 68/255))
                 }
                 .font(.title2)
                 .bold()
@@ -134,15 +148,15 @@ struct GiftPickerView: View {
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(.secondarySystemBackground))
+           // .background(Color(.secondarySystemBackground))
             .font(.title)
             .buttonStyle(BorderedProminentButtonStyle())
             .buttonBorderShape(.capsule)
             .controlSize(.large)
             .animation(.spring(dampingFraction: 0.6), value: showinfo)
-            .animation(.easeInOut(duration: 0.6), value: selectedFood)
+        .animation(.easeInOut(duration: 0.6), value: selectedFood)
         }
-//        .background(Color(.secondarySystemBackground))
+        }
     }
 
 #Preview {

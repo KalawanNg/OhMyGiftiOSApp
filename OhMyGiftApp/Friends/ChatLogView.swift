@@ -245,7 +245,8 @@ struct ChatLogView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
-            .background(Color.blue)
+           // .background(Color.blue)
+            .background(Color(red: 66/255, green: 72/255, blue: 116/255))
             .cornerRadius(6)
         }
         .padding(.horizontal)
@@ -268,7 +269,8 @@ struct MessageView: View {
                             .foregroundColor(.white)
                     }
                     .padding()
-                    .background(Color.blue)
+                   // .background(Color.blue)
+                    .background(Color(red: 66/255, green: 72/255, blue: 116/255))
                     .cornerRadius(8)
                 }
             } else {

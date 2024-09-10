@@ -178,16 +178,23 @@ struct MainMessagesView: View {
     
     var body: some View {
         NavigationView {
-            
+            ZStack {
+                Image("tree")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 350, height: 350)
+                    .opacity(0.18)
+                    .position(CGPoint(x: 200, y: 350))
             VStack {
                 
                 customNavBar
                 messagesView
-
+                
                 NavigationLink("", isActive: $shouldNavigateToChatLogView) {
                     ChatLogView(vm: chatLogViewModel)
                 }
             }
+        }
             .overlay(
                newMessageButton, alignment: .bottom
                
@@ -312,7 +319,8 @@ struct MainMessagesView: View {
             }
             .foregroundColor(.white)
             .padding(.vertical)
-            .background(Color.blue)
+//            .background(Color.blue)
+            .background(Color(red: 66/255, green: 72/255, blue: 116/255))
             .cornerRadius(32)
             .padding(.horizontal)
             .shadow(radius: 15)
