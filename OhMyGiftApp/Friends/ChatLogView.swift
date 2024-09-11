@@ -264,7 +264,8 @@ struct ChatLogView: View {
                 """
                 - Name: \(wishItem.wishName)
                   Price: \(wishItem.wishPrice ?? "N/A")
-                  Link: \(wishItem.wishLink ?? "N/A")
+                  Description: \(wishItem.wishDescription ?? "N/A")
+                    Link: \(wishItem.wishLink ?? "N/A")
                 """
             }.joined(separator: "\n\n")
             

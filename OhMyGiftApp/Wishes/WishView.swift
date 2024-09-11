@@ -82,6 +82,7 @@ struct WishView: View {
                         Spacer()
                         TextField("Add link", text: $link)
                             .keyboardType(.URL)
+                            .autocapitalization(.none)
                     }
                     .padding()
                     

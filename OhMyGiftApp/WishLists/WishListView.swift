@@ -18,26 +18,26 @@ struct WishListView: View {
     
     var onSave: (NewWishListModel) -> Void
         
-        init(wishlist: WishListModel, onSave: @escaping (NewWishListModel) -> Void) {
-            viewModel = WishListViewModel(wishlist: wishlist, wishListId: wishlist.wishlistId)
-            self.onSave = onSave
-        }
+    init(wishlist: WishListModel, onSave: @escaping (NewWishListModel) -> Void) {
+        viewModel = WishListViewModel(wishlist: wishlist, wishListId: wishlist.wishlistId)
+        self.onSave = onSave
+    }
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: 30) {  // 这里增加了间距，调整各个部分的距离
                     // Wishlist Icon and Name Input
-                    VStack(spacing: 10) {
+                    VStack(spacing: 16) {
                         Button{
                             shouldShowImagePicker.toggle()
                         } label: {
-                            VStack{
+                            VStack {
                                 if let image = self.image {
                                     Image(uiImage: image)
                                         .resizable()
                                         .scaledToFill()
-                                        .frame(width: 138, height: 138)
+                                        .frame(width: 158, height: 158)
                                         .cornerRadius(64)
                                 } else {
                                     Image(systemName: "photo")
@@ -64,15 +64,20 @@ struct WishListView: View {
                         .padding(.horizontal)
                     }
                     
-                    // Note Section
-                    VStack(alignment: .leading, spacing: 5) {
+                    // Note Section with more height
+                    VStack(alignment: .leading, spacing: 10) {
                         Text("Note")
-                            .font(.headline)
-                        TextField("Add note", text: $note)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .font(.title2)
+                        
+                        TextEditor(text: $note)  // 使用 TextEditor 代替 TextField
+                            .frame(height: 50)  // 增加 Note 的输入框高度
+                            .padding(.all, 8)    // 添加一些内边距
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
                     }
                     .padding(.horizontal)
+                    
                     // Save Button
+                    Spacer(minLength: 10)  // 增加按钮上方的间距
                     Button(action: {
                         let newWishlist = NewWishListModel(
                             id: viewModel.wishListId,
@@ -95,11 +100,11 @@ struct WishListView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                     }
-                        .padding(.horizontal)
-                        .padding(.bottom, 20)
-                        }
-                            .padding(.top)
-                                }
+                    .padding(.horizontal)
+                    .padding(.bottom, 20)
+                }
+                .padding(.top)
+            }
             .background(Color(red: 246/255, green: 246/255, blue: 246/255))
             .navigationBarItems(trailing: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
@@ -111,3 +116,21 @@ struct WishListView: View {
     }
 }
 
+struct WishListView_Previews: PreviewProvider {
+    static var previews: some View {
+        // 创建一个测试的 WishListModel 实例
+        let testWishList = WishListModel(
+            wishlistId: "testID",
+            userId: "testUser",
+            wishlistName: "Christmas",
+            imageName: "photo",
+            wishlistDescription: "A note for Christmas Wishlist",
+            dateCreated: Date()
+        )
+        
+        // 调用 WishListView，并提供一个空的 onSave 回调
+        WishListView(wishlist: testWishList) { newWishList in
+            print("Wishlist Saved: \(newWishList.wishlistName)")
+        }
+    }
+}
