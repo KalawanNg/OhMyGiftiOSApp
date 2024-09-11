@@ -6,37 +6,81 @@
 //
 
 import SwiftUI
+import FirebaseStorage
 
 struct WishCardView: View {
     var title: String
     var subtitle: String
-    var icon: String
+    var imageKey: String  // 使用 imageKey 替代 icon 来指定图像的路径
+    
+    @State private var image: Image? = nil
+    @State private var isLoading: Bool = true
 
     var body: some View {
         HStack {
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading){
                 Text(title)
-                    .font(.headline)
-                Text(subtitle)
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(Color(red: 53/255, green: 21/255, blue: 93/255))
+                
+                Text("￡\(subtitle)")
                     .font(.subheadline)
                     .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
+                    .padding(.top,10)
             }
-            .padding()
             Spacer()
-            Image(systemName: icon)
-                .resizable()
-                .frame(width: 50, height: 50)
-                .padding()
-            Spacer()
+            if let image = image {
+                image
+                    .resizable()
+         
+                    .scaledToFill()
+                    .frame(width: 100, height: 50)
+                    .padding()
+                    .clipShape(Circle())
+                   
+                   
+            } else if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .frame(width: 40, height: 40)
+                    .padding()
+            } else {
+                Image(systemName: "photo")  // 默认图标
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 40, height: 40)
+                    .padding()
+            }
         }
         .padding()
-       // .background(Color(red: 2485/255, green: 227/255, blue: 225/255))
         .cornerRadius(10)
-       // .shadow(radius: 1)
+
+        .onAppear {
+            downloadImage(key: imageKey)
+        }
+    }
+
+    private func downloadImage(key: String) {
+        let storage = Storage.storage()
+        let imageRef = storage.reference(withPath: key)
+
+        // Convert Int to Int64 for maxSize
+        imageRef.getData(maxSize: Int64(10 * 1024 * 1024)) { data, error in
+            if let error = error {
+                print("Error downloading image: \(error.localizedDescription)")
+                self.isLoading = false
+            } else if let data = data, let uiImage = UIImage(data: data) {
+                self.image = Image(uiImage: uiImage)
+                self.isLoading = false
+            }
+        }
     }
 }
 
+
 #Preview {
-    WishCardView(title: "Sample Title", subtitle: "Sample Subtitle", icon: "gift.fill")
+    WishCardView(title: "Sample Title", subtitle: "Sample Subtitle", imageKey: "gift.fill")
 }

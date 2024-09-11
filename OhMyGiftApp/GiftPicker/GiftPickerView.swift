@@ -16,19 +16,19 @@ struct Gift: Equatable {
     var protein: Double
     
     static let examples = [
-        Gift(name: "Beauty & Relex", image: "💄💅💉💆", price: 294, carb: 14, fat: 24, protein: 17),
-        Gift(name: "Cloth", image: "👗🧥👔👙", price: 89, carb: 20, fat: 0, protein: 1.8),
+        Gift(name: "Beauty & Relex", image: "💄💅💆", price: 294, carb: 14, fat: 24, protein: 17),
+        Gift(name: "Cloth", image: "👗🧥👔", price: 89, carb: 20, fat: 0, protein: 1.8),
         Gift(name: "Food & Drink", image: "🎂🍷🍱", price: 266, carb: 33, fat: 10, protein: 11),
         Gift(name: "Eletric Device", image: "💻📱📺", price: 339, carb: 74, fat: 1.1, protein: 12),
         Gift(name: "Daily Good", image: "🪞🌂🍴", price: 191, carb: 19, fat: 8.1, protein: 11.7),
         Gift(name: "Shoes", image: "👠👞", price: 256, carb: 56, fat: 1, protein: 8),
         Gift(name: "Pet", image: "🐶🐱🐦", price: 233, carb: 26.5, fat: 17, protein: 22),
-        Gift(name: "Accessory", image: "💍⌚️👓🎩", price: 219, carb: 33, fat: 5, protein: 9),
-        Gift(name: "Flower", image: "🌹🌼🌷🪻", price: 80, carb: 4, fat: 4, protein: 6),
+        Gift(name: "Accessory", image: "💍⌚️👓", price: 219, carb: 33, fat: 5, protein: 9),
+        Gift(name: "Flower", image: "🌹🪻🌷", price: 80, carb: 4, fat: 4, protein: 6),
         Gift(name: "Sport", image: "⚾️⛷️", price: 80, carb: 4, fat: 4, protein: 6),
-        Gift(name: "Music", image: "🎼🎻🎹🎺", price: 80, carb: 4, fat: 4, protein: 6),
+        Gift(name: "Music", image: "🎻🎹🎺", price: 80, carb: 4, fat: 4, protein: 6),
         Gift(name: "Game", image: "🎮🎧🎰", price: 80, carb: 4, fat: 4, protein: 6),
-        Gift(name: "Stationary", image: "🎨✒️📏📎", price: 80, carb: 4, fat: 4, protein: 6),
+        Gift(name: "Stationary", image: "✒️🎨📏", price: 80, carb: 4, fat: 4, protein: 6),
         Gift(name: "Realisic & Pratical", image: "💷 💶 💴", price: 80, carb: 4, fat: 4, protein: 6),
     ]
 }
@@ -40,11 +40,11 @@ struct GiftPickerView: View {
     
     var body: some View {
         ZStack {
-                Image("gift")
+                Image("love-birds")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 350, height: 550)
-                    .opacity(0.22)
+                    .opacity(0.35)
                     .position(CGPoint(x: 200, y: 300))
             VStack(spacing: 30) {
                 Group {
@@ -53,14 +53,13 @@ struct GiftPickerView: View {
                             .font(.system(size: 70))
                             .minimumScaleFactor(0.7)
                     } else {
-                        Image("noodles")
+                        Image("")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     }
                 }
-                .frame(height: 250)
-               // .border(Color(.secondarySystemBackground))
-                .padding()
+                .frame(height: 300)
+                .padding(40)
                 Spacer()
                 
                 Text("🩵 Inspire Me 🩵")
@@ -76,49 +75,8 @@ struct GiftPickerView: View {
                             .foregroundStyle(Color(red: 224/255, green: 33/255, blue: 138/255))
                             .id(selectedFood.name)
                             .transition(.identity)
-//                        Button {
-//                            showinfo.toggle()
-//                        } label: {
-//                            Image(systemName: "info.circle.fill")
-//                                .foregroundColor(.secondary)
-//                        }.buttonStyle(.plain)
                     }
                 }
-        
-                
-//                if let selectedFood = selectedFood {
-//                    Text("Price \(selectedFood.price.formatted()) ")
-//                        .font(.title2)
-//                    
-//                    VStack{
-//                        if showinfo {
-//                            Grid(horizontalSpacing: 12, verticalSpacing: 12){
-//                                GridRow{
-//                                    Text("Protein")
-//                                    Text("Fat")
-//                                    Text("Carb")
-//                                }.frame(minWidth: 60)
-//                                
-//                                Divider()
-//                                    .gridCellUnsizedAxes(.horizontal)
-//                                    .padding(.horizontal, -10)
-//                                
-//                                GridRow{
-//                                    Text(selectedFood.protein.formatted() + "g")
-//                                    Text(selectedFood.fat.formatted() + "g")
-//                                    Text(selectedFood.carb.formatted() + "g")
-//                                }
-//                            }
-//                            .font(.title3)
-//                            .padding(.horizontal)
-//                            .padding()
-//                            .background(RoundedRectangle(cornerRadius: 8).foregroundStyle(.background))
-//                            .transition(.move(edge: .top).combined(with: .opacity))
-//                        }
-//                    }
-//                    .frame(maxWidth: .infinity)
-//                    .clipped()
-//                }
                 
                 Spacer()
                 

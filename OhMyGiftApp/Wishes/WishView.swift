@@ -38,7 +38,9 @@ struct WishView: View {
                         }
                     }
 
+
                     HStack {
+                        Spacer()
                         Button{
                             shouldShowImagePicker.toggle()
                         } label: {
@@ -47,7 +49,7 @@ struct WishView: View {
                                     Image(uiImage: image)
                                         .resizable()
                                         .scaledToFill()
-                                        .frame(width: 138, height: 138)
+                                        .frame(width: 108, height: 108)
                                         .cornerRadius(64)
                                 } else {
                                     Image(systemName: "photo")
@@ -55,14 +57,14 @@ struct WishView: View {
                                         .padding()
                                         .foregroundColor(Color(.label))
                                 }
-                            }
-                            .overlay(RoundedRectangle(cornerRadius: 64)
+                           }
+                            .overlay(RoundedRectangle(cornerRadius: 34)
                                 .stroke(Color.black, lineWidth: 3)
                             )
                         }
-                        Text("Image")
+
                         Spacer()
-                    }
+                   }
                     .padding()
 
                     HStack {
@@ -118,15 +120,14 @@ struct WishView: View {
                 }
 
                 Button(action: {
-                 //   GiftNameClass.SelectedGiftName = ""
                     if let selectedWishlistId = selectedWishlistId {
                         let newWish = NewWishModel(
                             userId: FirebaseManager.shared.auth.currentUser?.uid ?? "",
                             wishlistId: viewModel.wishListId,
                             wishName: itemName,
-                            wishImageName: image,
+                            wishImageName: image, // Make sure the image key or reference is being saved here
                             wishPrice: price,
-                            wishLink: link,
+                            wishLink: link,  // Save the link
                             wishQuantity: quantity,
                             wishDescription: note,
                             maingiftname: viewModel.wish?.maingiftname
@@ -143,10 +144,11 @@ struct WishView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color(red: 66/255, green: 72/255, blue: 116/255))
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
+
                 .padding()
             }
             .navigationBarTitle("Add Wish", displayMode: .inline)

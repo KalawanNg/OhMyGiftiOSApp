@@ -22,13 +22,13 @@ struct WishListCardView: View {
                 Text(title)
                     .font(.title2)
                     .bold()
-                    .foregroundColor(.black)
+                    .foregroundColor(Color(red: 53/255, green: 21/255, blue: 93/255))
                 
                 Text(subtitle)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.leading)
-                    .padding(.top,20)
+                    .padding(.top,10)
             }
             Spacer()
             if let image = image {
@@ -56,6 +56,7 @@ struct WishListCardView: View {
         }
         .padding()
         .cornerRadius(10)
+        
 
         .onAppear {
             downloadImage(key: imageKey)

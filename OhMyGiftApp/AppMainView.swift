@@ -37,7 +37,6 @@ struct AppMainView: View {
                 }
                 .padding()
              .background(Color(red: 66/255, green: 72/255, blue: 116/255))
-             // .background(Color(red: 224/255, green: 33/255, blue: 138/255))//224, 33, 138
 
 
                 // 主内容区域

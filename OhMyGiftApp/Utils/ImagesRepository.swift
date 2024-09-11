@@ -41,30 +41,21 @@ class ImagesRepository: ObservableObject {
     }
     
     
-    func uploadImage(folder: String, image: UIImage, completion: @escaping (_ imageURL: String?) -> Void) {
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            completion(nil)
-            return
-        }
-        
-        let imageRef = storageRef.child(folder).child(UUID().uuidString + ".jpg")
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
-        
-        imageRef.putData(imageData, metadata: metadata) { (metadata, error) in
-            guard error == nil else {
-                print("Error uploading image: \(error!.localizedDescription)")
-                completion(nil)
-                return
-            }
-            
-            imageRef.downloadURL { (url, error) in
-                guard let downloadURL = url else {
-                    print("Error getting download URL: \(error?.localizedDescription ?? "Unknown error")")
-                    completion(nil)
-                    return
+    func uploadImage(_ image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        let storageRef = Storage.storage().reference().child("wish_images/\(UUID().uuidString).jpg")
+        if let imageData = image.jpegData(compressionQuality: 0.8) {
+            storageRef.putData(imageData, metadata: nil) { metadata, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    storageRef.downloadURL { url, error in
+                        if let error = error {
+                            completion(.failure(error))
+                        } else if let url = url {
+                            completion(.success(url.absoluteString)) // 返回图片的 URL
+                        }
+                    }
                 }
-                completion(imageRef.fullPath)
             }
         }
     }

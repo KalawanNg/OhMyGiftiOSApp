@@ -1,90 +1,190 @@
+
 import SwiftUI
+import FirebaseStorage
 
 struct WishDetailView: View {
-    @Environment(\.presentationMode) var presentationMode
+    var title: String
+    var subtitle: String
+    var imageKey: String  // 使用 imageKey 替代 icon 来指定图像的路径
     @ObservedObject var viewModel: WishViewModel
-    @State var deletionAlert: Bool = false
     
-    init(wish: WishModel, wishListId: String) {
-        self.viewModel = WishViewModel(wish: wish, wishListId: wishListId)
-    }
+    @State private var image: Image? = nil
+    @State private var isLoading: Bool = true
     
     var body: some View {
-        if let fetchedWish = viewModel.wish {
-            VStack(alignment: .leading, spacing: 20) {
-                // 显示愿望的图片
-                if !fetchedWish.wishImageName.isEmpty {
-                    Image(fetchedWish.wishImageName)
+        VStack(alignment: .leading, spacing: 30) {
+            // 显示愿望图片
+            VStack {
+                if let image = image {
+                    image
                         .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .cornerRadius(10)
+                        .scaledToFill()
+                        .frame(width: 250, height: 150)
+                        .clipShape(RoundedRectangle(cornerRadius: 20)) // 椭圆形
+                        .shadow(radius: 5)  // 添加阴影
+                        .padding()
+                } else if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .frame(width: 50, height: 50)
+                        .padding()
                 } else {
-                    Image(systemName: "photo")
+                    Image(systemName: "photo")  // 默认图片
                         .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .cornerRadius(10)
+                        .scaledToFill()
+                        .frame(width: 250, height: 150)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .shadow(radius: 5)
+                        .padding()
                 }
-                
-                // 显示愿望名称
-                Text(fetchedWish.wishName)
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                // 显示愿望价格
-                if let wishPrice = fetchedWish.wishPrice, !wishPrice.isEmpty {
-                    Text("Price: \(wishPrice)")
-                        .font(.headline)
-                }
-                
-                // 显示愿望链接
-                if let wishLink = fetchedWish.wishLink, !wishLink.isEmpty {
-                    Link("Purchase Link", destination: URL(string: wishLink)!)
-                        .foregroundColor(.blue)
-                }
-                
-                // 显示愿望数量
-                if let wishQuantity = fetchedWish.wishQuantity, !wishQuantity.isEmpty {
-                    Text("Quantity: \(wishQuantity)")
-                        .font(.subheadline)
-                }
-                
-                // 显示愿望描述
-                if let wishDescription = fetchedWish.wishDescription, !wishDescription.isEmpty {
-                    Text("Description: \(wishDescription)")
-                        .font(.body)
-                }
-                
-                Spacer()
             }
-            .padding()
-            .navigationBarTitle(fetchedWish.wishName, displayMode: .inline)
-            .refreshable {
-                viewModel.isRefreshing = true
-                viewModel.reloadWish()
+            .frame(maxWidth: .infinity)
+          //  .background(Color(red: 210/255, green: 224/255, blue: 251/255))
+            .background(Color(UIColor.systemGray6))
+            .cornerRadius(20)
+            .shadow(radius: 5)
+            .padding(.horizontal)
+            
+            // 显示愿望详细信息
+            if let fetchedWish = viewModel.wish {
+                VStack(alignment: .leading, spacing: 20) {
+                    // 愿望名称
+                    HStack {
+                        Text("Name:")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text(fetchedWish.wishName)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 3)
+
+                    // 愿望价格
+                    if let wishPrice = fetchedWish.wishPrice, !wishPrice.isEmpty {
+                        HStack {
+                            Text("Price:")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            Text("￡\(wishPrice)")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(15)
+                        .shadow(radius: 3)
+                    }
+
+                    // 愿望链接
+                    if let wishLink = fetchedWish.wishLink, !wishLink.isEmpty, let url = URL(string: wishLink) {
+                        HStack {
+                            Text("Link:")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            Text(wishLink)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(.blue)//改
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(15)
+                        .shadow(radius: 3)
+                    }
+
+                    // 愿望数量
+                    if let wishQuantity = fetchedWish.wishQuantity, !wishQuantity.isEmpty {
+                        HStack {
+                            Text("Quantity:")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            Text("\(wishQuantity)")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(15)
+                        .shadow(radius: 3)
+                    }
+
+                    // 愿望描述
+                    if let wishDescription = fetchedWish.wishDescription, !wishDescription.isEmpty {
+                        HStack {
+                            Text("Description:")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            Text(wishDescription)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(15)
+                        .shadow(radius: 3)
+                    }
+                    
+                    Spacer()
+                }
+                .padding()
+             //   .background(Color(UIColor.systemGray6))  // 使用灰色背景提升视觉效果
+                .background(Color(red: 210/255, green: 224/255, blue: 251/255))
+                .cornerRadius(20)
+                .padding(.horizontal)
+                .navigationBarTitle(fetchedWish.wishName, displayMode: .inline)
             }
-            .onAppear {
-                viewModel.reloadWish() // 在视图加载时重新加载数据
-                print("testing \(viewModel.wish?.wishName)")
+        }
+        .onAppear {
+            downloadImage(key: imageKey)  // 在视图加载时下载图片
+        }
+       // .background(Color(UIColor.systemGray6))  // 整体背景为浅灰色
+        .background(Color(red: 232/255, green: 238/255, blue: 255/255))
+        .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    // 从 Firebase 存储中下载图片
+    private func downloadImage(key: String) {
+        let storage = Storage.storage()
+        let imageRef = storage.reference(withPath: key)
+        
+        // Convert Int to Int64 for maxSize
+        imageRef.getData(maxSize: Int64(10 * 1024 * 1024)) { data, error in
+            if let error = error {
+                print("Error downloading image: \(error.localizedDescription)")
+                self.isLoading = false
+            } else if let data = data, let uiImage = UIImage(data: data) {
+                self.image = Image(uiImage: uiImage)
+                self.isLoading = false
             }
-        } else {
-            ProgressView()  // 显示加载状态
         }
     }
 }
 
 #Preview {
-    WishDetailView(wish: WishModel(
-        id: "kURrLR7qVNSai8n7Y1Te",
-        userId: "c2Q33BwZSmQBxlmIenV8kH2kX8z1",
-        wishlistId: "BNVribYwyKPv4oer1LjV",
-        wishName: "New Item",
-        wishImageName: " ",
-        wishPrice: "20.00",
-        wishLink: " ",
-        wishQuantity: "1",
-        wishDescription: "Sample Description",
-        dateCreated: Date()
-    ), wishListId: "BNVribYwyKPv4oer1LjV")
+    WishDetailView(
+        title: "Sample Wish",
+        subtitle: "Sample Subtitle",
+        imageKey: "sampleImageKey",
+        viewModel: WishViewModel(wish: WishModel(
+            id: "sampleWishID",
+            userId: "sampleUserID",
+            wishlistId: "sampleWishlistID",
+            wishName: "Sample Wish",
+            wishImageName: "sampleImagePathInFirebase",  // Replace this with a real Firebase path for testing
+            wishPrice: "25.00",
+            wishLink: "http://example.com",
+            wishQuantity: "1",
+            wishDescription: "This is a sample description for the wish.",
+            dateCreated: Date()
+        ), wishListId: "sampleWishlistID")
+    )
 }
+

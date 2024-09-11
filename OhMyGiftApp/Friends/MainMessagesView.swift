@@ -165,7 +165,6 @@ class MainMessagesViewModel: ObservableObject {
     
     }
     
-
 struct MainMessagesView: View {
     
     @State var shouldShowLogOutOptions = false
@@ -190,9 +189,9 @@ struct MainMessagesView: View {
                 customNavBar
                 messagesView
                 
-                NavigationLink("", isActive: $shouldNavigateToChatLogView) {
-                    ChatLogView(vm: chatLogViewModel)
-                }
+               NavigationLink("", isActive: $shouldNavigateToChatLogView) {
+               ChatLogView(vm: chatLogViewModel)
+               }
             }
         }
             .overlay(
@@ -201,6 +200,7 @@ struct MainMessagesView: View {
             )
             .navigationBarBackButtonHidden(true)
         }
+
     }
     
     private var customNavBar: some View {
@@ -285,10 +285,13 @@ struct MainMessagesView: View {
                                 Text(recentMessage.username)
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color(.label))
+
                                 Text(recentMessage.text)
                                     .font(.system(size: 14))
                                     .foregroundColor(Color(.darkGray))
-                                    .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(2) //限制行数
+                                    .truncationMode(.tail) //超过的部分以省略号结尾
                             }
                             Spacer()
                             
